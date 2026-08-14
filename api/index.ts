@@ -22,7 +22,14 @@ let loadPromise: Promise<void> | null = null;
 
 function loadServer(): Promise<void> {
   if (loadPromise) return loadPromise;
-  loadPromise = import('../server')
+  // NOTE: The '.js' extension is REQUIRED here. With "type": "module" in
+  // package.json, Node.js uses ESM resolution, which does NOT support
+  // extensionless or directory imports. Writing import('../server') would
+  // resolve to the /server DIRECTORY (which contains vectorEngineGateway.ts)
+  // instead of server.ts, causing ERR_UNSUPPORTED_DIR_IMPORT. TypeScript's
+  // bundler moduleResolution maps '../server.js' to '../server.ts' at compile
+  // time, and @vercel/node compiles server.ts to server.js at deploy time.
+  loadPromise = import('../server.js')
     .then((mod) => {
       serverApp = mod.default || mod;
     })

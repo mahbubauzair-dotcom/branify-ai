@@ -7,7 +7,7 @@ import {
   TaskRoutingConfig,
   CuratedModelInfo,
   TASK_DEFINITIONS
-} from './server/vectorEngineGateway';
+} from './server/vectorEngineGateway.js';
 
 // NOTE: `vite` is intentionally NOT imported at the top level.
 // It is only needed in local development (NODE_ENV !== 'production').
