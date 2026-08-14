@@ -359,6 +359,18 @@ Client request: "${customPrompt.trim()}"`;
                         ★ Live Site
                       </a>
                     )}
+                    {cat.shortName === 'Gents Salon' && (
+                      <a
+                        href="/template/gents-salon-demo"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-3 py-2 bg-blue-500/15 text-blue-400 border border-blue-500/40 rounded-lg text-xs font-semibold hover:bg-blue-500/25 transition-colors flex items-center gap-1"
+                        title="Open Royal Crown Gents Salon (second demo client — Deira, navy/silver theme)"
+                      >
+                        ★ Demo 2
+                      </a>
+                    )}
                   </div>
                 </div>
               </Card>

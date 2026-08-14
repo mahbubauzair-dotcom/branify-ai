@@ -10,6 +10,7 @@ import { Login } from './pages/auth/Login';
 
 // Integrated Templates (self-contained sub-apps)
 import { GentsSalonTemplate } from './templates/gents-salon/GentsSalonTemplate';
+import { GentsSalonDemoTemplate } from './templates/gents-salon-demo/GentsSalonTemplate';
 
 // Main Workspace & Builder Pages
 import { Dashboard } from './pages/dashboard/Dashboard';
@@ -134,6 +135,7 @@ export default function App() {
         {/* The Afroza Gents Salon app handles its own internal routing via */}
         {/* window.location.pathname (including /template/gents-salon/admin/*) */}
         <Route path="/template/gents-salon/*" element={<GentsSalonTemplate />} />
+        <Route path="/template/gents-salon-demo/*" element={<GentsSalonDemoTemplate />} />
 
         {/* Protected Private Owner Workspace */}
         <Route
