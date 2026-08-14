@@ -211,8 +211,18 @@ const AUTHORIZED_OWNER_EMAIL = 'mahbubauzair@gmail.com';
 app.post('/api/auth/owner-login', (req, res) => {
   const { email, password, rememberMe } = req.body || {};
 
-  // 1. Verify owner secret configuration with robust fallback
-  const ownerPasswordSecret = process.env.BRANIFY_OWNER_PASSWORD || 'Uzair2244';
+  // 1. Verify owner secret configuration.
+  //    SECURITY: No hardcoded fallback. If BRANIFY_OWNER_PASSWORD is not set
+  //    in the environment, login is REFUSED with a clear 503 response so the
+  //    misconfiguration is immediately visible (instead of silently allowing
+  //    a known password that lives in source control).
+  const ownerPasswordSecret = process.env.BRANIFY_OWNER_PASSWORD;
+  if (!ownerPasswordSecret || ownerPasswordSecret.trim() === '') {
+    return res.status(503).json({
+      success: false,
+      error: 'Server authentication secret is not configured. Set BRANIFY_OWNER_PASSWORD in the deployment environment.'
+    });
+  }
 
   // 2. Validate authorized email
   const trimmedEmail = (email || '').trim().toLowerCase();
