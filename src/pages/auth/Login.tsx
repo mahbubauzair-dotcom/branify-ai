@@ -155,7 +155,7 @@ export const Login: React.FC = () => {
           <div className="mt-6 pt-5 border-t border-[#292929]/70 flex items-center justify-between text-[11px] text-[#737373]">
             <div className="flex items-center gap-2">
               <KeyRound className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <span>Owner: <strong className="text-[#A3A3A3]">Mahbub Uzair</strong></span>
+              <span>Owner: <strong className="text-[#A3A3A3]">Mahbuba</strong></span>
             </div>
             <span className="text-[#10B981] font-mono">single-owner</span>
           </div>

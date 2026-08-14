@@ -185,7 +185,7 @@ export const INITIAL_AUDIT_LOGS: AdminAuditLog[] = [
   {
     id: 'log-1',
     timestamp: '2026-08-14 07:18:22',
-    actor: 'Mahbub Uzair',
+    actor: 'Mahbuba',
     action: 'DEPLOY_PROJECT_PRODUCTION',
     target: 'Project: Aura Luxury Spa & Wellness (proj-1)',
     ip: '198.51.100.42',
@@ -235,7 +235,7 @@ export const INITIAL_AUDIT_LOGS: AdminAuditLog[] = [
   {
     id: 'log-6',
     timestamp: '2026-08-13 19:40:12',
-    actor: 'Mahbub Uzair',
+    actor: 'Mahbuba',
     action: 'UPDATE_AI_MODEL_SETTINGS',
     target: 'Gateway Default Model -> Gemini 2.5 Pro',
     ip: '198.51.100.42',
@@ -248,7 +248,7 @@ export const INITIAL_AUDIT_LOGS: AdminAuditLog[] = [
 export const INITIAL_ADMIN_USERS: AdminUser[] = [
   {
     id: 'usr-1',
-    name: 'Mahbub Uzair',
+    name: 'Mahbuba',
     email: 'mahbubauzair@gmail.com',
     role: 'Superadmin',
     status: 'Active',
@@ -259,7 +259,7 @@ export const INITIAL_ADMIN_USERS: AdminUser[] = [
     aiCreditsUsed: 42800,
     aiCreditsLimit: 100000,
     country: 'United States',
-    avatarInitials: 'MU'
+    avatarInitials: 'M'
   },
   {
     id: 'usr-2',
@@ -342,7 +342,7 @@ export const INITIAL_ADMIN_PROJECTS: AdminProject[] = [
   {
     id: 'proj-1',
     name: 'Aura Luxury Spa & Wellness',
-    ownerName: 'Mahbub Uzair',
+    ownerName: 'Mahbuba',
     ownerEmail: 'mahbubauzair@gmail.com',
     type: 'website',
     category: 'Spas & Massage Centers',
@@ -718,7 +718,7 @@ export const AdminService = {
     if (!session) return null;
     try {
       const parsed = JSON.parse(session);
-      return parsed.admin || { name: 'Mahbub Uzair', email: 'mahbubauzair@gmail.com', role: 'Superadmin', avatarInitials: 'MU' };
+      return parsed.admin || { name: 'Mahbuba', email: 'mahbubauzair@gmail.com', role: 'Superadmin', avatarInitials: 'M' };
     } catch {
       return null;
     }
@@ -744,10 +744,10 @@ export const AdminService = {
       token: `adm_tok_${Date.now()}_${Math.random().toString(36).substring(2, 10)}`,
       expiresAt: Date.now() + sessionDuration,
       admin: {
-        name: trimmedUser.includes('mahbub') ? 'Mahbub Uzair' : 'Superadmin',
+        name: trimmedUser.includes('mahbub') ? 'Mahbuba' : 'Superadmin',
         email: trimmedUser.includes('@') ? trimmedUser : 'admin@branify.ai',
         role: 'Superadmin',
-        avatarInitials: trimmedUser.includes('mahbub') ? 'MU' : 'SA'
+        avatarInitials: trimmedUser.includes('mahbub') ? 'M' : 'SA'
       }
     };
 

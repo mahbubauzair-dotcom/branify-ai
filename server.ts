@@ -261,10 +261,10 @@ app.post('/api/auth/owner-login', (req, res) => {
 
   const ownerProfile = {
     id: 'owner-mahbub-001',
-    name: 'Mahbub Uzair',
+    name: 'Mahbuba',
     email: AUTHORIZED_OWNER_EMAIL,
     role: 'Platform Owner',
-    avatarInitials: 'MU',
+    avatarInitials: 'M',
     plan: 'Private Enterprise Edition',
     createdAt: '2026-01-01T00:00:00Z',
     lastLoginAt: new Date().toISOString(),
