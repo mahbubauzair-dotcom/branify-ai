@@ -1,0 +1,6 @@
+{
+  "name": "BRANIFY AI",
+  "description": "Build. Brand. Grow. AI-powered business operating platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
