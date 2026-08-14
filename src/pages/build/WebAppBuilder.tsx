@@ -361,14 +361,26 @@ Client request: "${customPrompt.trim()}"`;
                     )}
                     {cat.shortName === 'Gents Salon' && (
                       <a
-                        href="/template/gents-salon-demo"
+                        href="https://royal-crown-gents-salon.vercel.app/"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
-                        className="px-3 py-2 bg-blue-500/15 text-blue-400 border border-blue-500/40 rounded-lg text-xs font-semibold hover:bg-blue-500/25 transition-colors flex items-center gap-1"
-                        title="Open Royal Crown Gents Salon (second demo client — Deira, navy/silver theme)"
+                        className="px-3 py-2 bg-zinc-500/15 text-zinc-300 border border-zinc-500/40 rounded-lg text-xs font-semibold hover:bg-zinc-500/25 transition-colors flex items-center gap-1"
+                        title="Open Royal Crown Gents Salon — live deployed site (Deira, silver theme, standalone Vercel)"
                       >
-                        ★ Demo 2
+                        ★ Royal Crown
+                      </a>
+                    )}
+                    {cat.shortName === 'Spa & Wellness' && (
+                      <a
+                        href="https://alaya-spa-wellness.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-3 py-2 bg-[#5B6B5A]/15 text-[#8FA68E] border border-[#5B6B5A]/40 rounded-lg text-xs font-semibold hover:bg-[#5B6B5A]/25 transition-colors flex items-center gap-1"
+                        title="Open Alaya Spa & Wellness Dubai — live deployed site (Jumeirah, sage/champagne theme, full CMS + Supabase)"
+                      >
+                        ★ Live Site
                       </a>
                     )}
                   </div>
