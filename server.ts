@@ -1,7 +1,6 @@
 import express from 'express';
 import path from 'path';
 import dotenv from 'dotenv';
-import { createServer as createViteServer } from 'vite';
 import {
   curateRecommendedModels,
   VectorEngineRawModel,
@@ -9,6 +8,12 @@ import {
   CuratedModelInfo,
   TASK_DEFINITIONS
 } from './server/vectorEngineGateway';
+
+// NOTE: `vite` is intentionally NOT imported at the top level.
+// It is only needed in local development (NODE_ENV !== 'production').
+// Importing it eagerly would force Vercel's @vercel/node builder to bundle
+// the entire Vite runtime into the production serverless function, which
+// both bloats cold-start time and is unnecessary in production.
 
 dotenv.config();
 
@@ -848,16 +853,51 @@ Return a valid JSON object strictly matching this schema:
 
 
 // ---------------------------------------------------------------------------
-// VITE OR STATIC SERVING
+// JSON 404 FALLBACK FOR /api/*
+// ---------------------------------------------------------------------------
+// Registered AFTER every API route above, but BEFORE the SPA fallback below.
+// Any /api/* request that did not match a registered route (wrong path OR
+// unsupported HTTP method) lands here and gets a structured JSON response
+// instead of falling through to the SPA index.html or Express's default
+// HTML "Cannot POST /api/..." body.
+// ---------------------------------------------------------------------------
+app.use('/api', (req, res) => {
+  res.status(404).json({
+    success: false,
+    error: `API endpoint not found: ${req.method} ${req.originalUrl}`,
+    method: req.method,
+    path: req.originalUrl
+  });
+});
+
+// Also handle OPTIONS preflight for /api/* explicitly so CORS preflight
+// requests return JSON instead of falling through to the 404 above (which
+// would still be JSON, but this makes intent explicit and keeps status 204).
+app.options('/api/*', (_req, res) => {
+  res.status(204).end();
+});
+
+// ---------------------------------------------------------------------------
+// VITE OR STATIC SERVING (LOCAL DEV / LOCAL PRODUCTION ONLY)
+// ---------------------------------------------------------------------------
+// On Vercel, static files are served by Vercel's CDN from the `dist/` output
+// directory, and SPA fallback routing is handled by vercel.json rewrites.
+// We therefore skip registering Express static middleware + the SPA
+// catch-all on Vercel so that /api/* requests are dispatched solely by the
+// API routes above (and the JSON 404 fallback just above).
 // ---------------------------------------------------------------------------
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
+    // Lazy-load vite so the production serverless bundle never pulls it in.
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa'
     });
     app.use(vite.middlewares);
-  } else {
+  } else if (!process.env.VERCEL) {
+    // Local production preview (e.g. `npm start` / `node dist/server.cjs`).
+    // Vercel itself uses the vercel.json rewrites instead.
     const distPath = path.join(process.cwd(), 'dist');
     app.use(express.static(distPath));
     app.get('*', (_req, res) => {

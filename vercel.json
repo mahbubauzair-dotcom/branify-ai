@@ -2,7 +2,6 @@
   "version": 2,
   "outputDirectory": "dist",
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/dist/server.cjs" },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }
