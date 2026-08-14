@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CategoryConfig } from '../../data/webapp/types';
 import { HeroSection, AboutSection, ServicesSection, PricingSection, TeamSection, GallerySection, BookingSection, TestimonialsSection, LocationSection, FaqSection, WhatsAppCtaSection, PwaInstallSection, FooterSection, DemoNavbar } from './sections';
+import { WhatsAppFloatingButton } from './WhatsAppFloatingButton';
 
 interface DemoFrontendProps {
   config: CategoryConfig;
@@ -153,6 +154,13 @@ export const DemoFrontend: React.FC<DemoFrontendProps> = ({ config, customizatio
       {config.sections.map((sectionId) => sectionMap[sectionId]).filter(Boolean)}
 
       <FooterSection business={business} theme={theme} pwa={config.pwa} showLegalLinks={true} />
+
+      {/* Floating WhatsApp button — fixed bottom-right on every page */}
+      <WhatsAppFloatingButton
+        whatsappNumber={business.whatsapp}
+        defaultMessage={config.whatsappMessage}
+        themeColor={theme.primary}
+      />
 
       {/* Booking modal trigger */}
       {bookingOpen && (

@@ -6,17 +6,28 @@ import { Badge } from '../../components/common/Badge';
 import {
   Cpu, Smartphone, Monitor, Settings2, Check, ChevronRight,
   Sparkles, Eye, LayoutDashboard, ShoppingBag, Palette,
-  FileText, CheckCircle2, Wand2, Building2, ArrowRight, ArrowLeft
+  FileText, CheckCircle2, Wand2, Building2, ArrowRight, ArrowLeft,
+  MessageSquare, Send, AlertCircle, Loader2, ChevronDown, ChevronUp
 } from 'lucide-react';
-import { ALL_CATEGORIES } from '../../data/webapp';
+import { ALL_CATEGORIES, PREMIUM_TEMPLATES } from '../../data/webapp';
 import { CategoryConfig, CategoryId } from '../../data/webapp/types';
 import { DemoFrontend } from '../../components/webapp/DemoFrontend';
 import { DemoAdmin } from '../../components/webapp/DemoAdmin';
 import { PWAPreview } from '../../components/webapp/PWAPreview';
 import { activityLogger } from '../../services/activityLogger';
+import { safeFetchJson } from '../../utils/safeFetch';
 
 type PreviewTab = 'frontend' | 'admin' | 'mobile' | 'pwa';
 type WorkflowStep = 'select' | 'customize' | 'modules' | 'preview' | 'generate';
+
+// AI custom prompt state
+interface CustomPromptResult {
+  success: boolean;
+  content?: string;
+  model?: string;
+  error?: string;
+  latencyMs?: number;
+}
 
 export const WebAppBuilder: React.FC = () => {
   const location = useLocation();
@@ -28,6 +39,13 @@ export const WebAppBuilder: React.FC = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationComplete, setGenerationComplete] = useState(false);
   const [legalPage, setLegalPage] = useState<string | null>(null);
+  const [showAllCategories, setShowAllCategories] = useState(false);
+
+  // AI Custom Prompt state
+  const [customPrompt, setCustomPrompt] = useState('');
+  const [promptHistory, setPromptHistory] = useState<string[]>([]);
+  const [isGeneratingPrompt, setIsGeneratingPrompt] = useState(false);
+  const [promptResult, setPromptResult] = useState<CustomPromptResult | null>(null);
 
   // Customization state
   const [customization, setCustomization] = useState({
@@ -44,10 +62,16 @@ export const WebAppBuilder: React.FC = () => {
   });
 
   // Handle Business Finder handoff — pre-populate from router state
+  // Checks premium templates FIRST (3 UAE focus), then falls back to general catalog
   useEffect(() => {
     const state = location.state as any;
     if (state && state.categoryId) {
-      const cat = ALL_CATEGORIES.find((c) => c.id === state.categoryId);
+      // Try premium templates first
+      let cat = PREMIUM_TEMPLATES.find((c) => c.id === state.categoryId);
+      // Fallback to general catalog
+      if (!cat) {
+        cat = ALL_CATEGORIES.find((c) => c.id === state.categoryId);
+      }
       if (cat) {
         setSelectedCategory(cat);
         setCustomization({
@@ -66,6 +90,78 @@ export const WebAppBuilder: React.FC = () => {
       }
     }
   }, [location.state]);
+
+  // Generate custom app via VectorEngine
+  // Sends the user's prompt to the existing /api/vectorengine/chat endpoint
+  // (server-side proxy — API key never exposed to browser)
+  const handleGenerateCustomPrompt = async () => {
+    if (!customPrompt.trim() || customPrompt.trim().length < 10) {
+      setPromptResult({
+        success: false,
+        error: 'Please enter a more detailed prompt (at least 10 characters).'
+      });
+      return;
+    }
+
+    setIsGeneratingPrompt(true);
+    setPromptResult(null);
+
+    const systemPrompt = `You are BRANIFY AI, an expert web application architect. A client has requested a custom web application build. Based on their prompt, generate a structured application specification including:
+1. Recommended business category (from: Gents Salon, Ladies Salon, Spa & Wellness, or a custom category)
+2. Suggested template/theme direction
+3. Key features and modules needed
+4. Suggested pages (frontend)
+5. Admin dashboard modules
+6. Technical considerations
+7. PWA requirements
+8. Legal pages needed
+
+Format your response as a clear, structured specification. Be specific and actionable.
+
+Client request: "${customPrompt.trim()}"`;
+
+    try {
+      const data = await safeFetchJson<any>('/api/vectorengine/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: [{ role: 'user', content: systemPrompt }],
+          model: 'claude-3-7-sonnet-20250219',
+          temperature: 0.7,
+          max_tokens: 2048
+        })
+      });
+
+      const content = data.choices?.[0]?.message?.content || data.error || '';
+      const modelUsed = data.model || 'claude-3-7-sonnet-20250219';
+      const latency = data.latencyMs || 0;
+
+      // Check if the response is a real model response or a fallback
+      const isFallback = content.includes('[VectorEngine AI Gateway]');
+
+      setPromptResult({
+        success: !isFallback,
+        content,
+        model: modelUsed,
+        latencyMs: latency,
+        error: isFallback
+          ? 'Selected AI model returned a fallback response. Please try a verified model like claude-opus-5, gpt-4o, or deepseek-v3.'
+          : undefined
+      });
+
+      // Add to history
+      if (!isFallback) {
+        setPromptHistory((prev) => [customPrompt.trim(), ...prev].slice(0, 5));
+      }
+    } catch (err: any) {
+      setPromptResult({
+        success: false,
+        error: err.message || 'Failed to generate. Please check your connection and try again.'
+      });
+    } finally {
+      setIsGeneratingPrompt(false);
+    }
+  };
 
   // Listen for legal page navigation events from the DemoFrontend footer
   useEffect(() => {
@@ -124,7 +220,7 @@ export const WebAppBuilder: React.FC = () => {
   };
 
   // ===========================================================================
-  // STEP 1: CATEGORY SELECTOR
+  // STEP 1: TEMPLATE SELECTOR — Premium templates first + AI Custom Prompt
   // ===========================================================================
   if (workflowStep === 'select' || !selectedCategory) {
     return (
@@ -136,103 +232,320 @@ export const WebAppBuilder: React.FC = () => {
               <Cpu className="w-3.5 h-3.5" />
               <span>Web App Builder</span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-extrabold text-[#F5F5F5] tracking-tight">Professional Demo Generator</h1>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-[#F5F5F5] tracking-tight">Premium UAE Beauty Templates</h1>
             <p className="text-sm text-[#A3A3A3] mt-1">
-              Each of the 10 BRANIFY categories ships with a polished, production-grade demo. Choose one to preview, customize, and generate.
+              Three production-grade templates for the Dubai beauty market — Gents Salon, Ladies Salon, and Spa & Wellness. Each is client-ready with frontend, admin, PWA, and legal pages.
             </p>
           </div>
-          <Badge variant="emerald">{ALL_CATEGORIES.length} Categories Ready</Badge>
+          <Badge variant="gold">3 Premium Templates</Badge>
         </div>
 
-        {/* Category Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {ALL_CATEGORIES.map((cat) => (
-            <Card
-              key={cat.id}
-              className="p-0 bg-[#0D0D0D] border-[#292929] hover:border-[#10B981]/50 transition-all overflow-hidden cursor-pointer group"
-            >
-              {/* Theme preview banner */}
-              <div
-                className="h-32 relative"
-                style={{ background: cat.hero.gradient }}
-                onClick={() => handleSelectCategory(cat)}
+        {/* PREMIUM TEMPLATES — 3 cards */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+            <h2 className="text-sm font-bold text-[#F5F5F5] uppercase tracking-wider">UAE Launch Templates</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {PREMIUM_TEMPLATES.map((cat) => (
+              <Card
+                key={cat.shortName}
+                className="p-0 bg-[#0D0D0D] border-[#D4AF37]/30 hover:border-[#D4AF37] transition-all overflow-hidden cursor-pointer group"
               >
-                <div className="absolute inset-0 flex items-center justify-between p-5">
-                  <div>
-                    <div
-                      className="text-xs font-bold uppercase tracking-wider mb-1"
-                      style={{ color: cat.theme.accent }}
-                    >
-                      {cat.theme.tone}
-                    </div>
-                    <div
-                      className="text-lg font-extrabold"
-                      style={{ color: cat.theme.textLight, fontFamily: cat.theme.fontHeading }}
-                    >
-                      {cat.business.name}
-                    </div>
-                  </div>
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-black"
-                    style={{
-                      background: cat.theme.primary,
-                      color: cat.theme.bgLight
-                    }}
-                  >
-                    {cat.shortName.charAt(0)}
-                  </div>
-                </div>
-              </div>
-
-              {/* Card body */}
-              <div className="p-5 space-y-4" onClick={() => handleSelectCategory(cat)}>
-                <div>
-                  <h3 className="text-base font-bold text-[#F5F5F5]">{cat.name}</h3>
-                  <p className="text-xs text-[#A3A3A3] mt-1 leading-relaxed">{cat.description}</p>
-                </div>
-
-                {/* Theme swatches */}
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-[#737373] uppercase tracking-wider">Palette:</span>
-                  <div className="flex gap-1">
-                    {[cat.theme.primary, cat.theme.accent, cat.theme.bgDark, cat.theme.bgLight].map((c, i) => (
+                {/* Theme preview banner */}
+                <div
+                  className="h-36 relative"
+                  style={{ background: cat.hero.gradient }}
+                  onClick={() => handleSelectCategory(cat)}
+                >
+                  <div className="absolute inset-0 flex items-center justify-between p-5">
+                    <div>
                       <div
-                        key={i}
-                        className="w-4 h-4 rounded border border-[#292929]"
-                        style={{ background: c }}
-                        title={c}
-                      />
-                    ))}
+                        className="text-[10px] font-bold uppercase tracking-wider mb-2 px-2 py-0.5 rounded inline-block"
+                        style={{ background: `${cat.theme.accent}22`, color: cat.theme.accent }}
+                      >
+                        ★ PREMIUM
+                      </div>
+                      <div
+                        className="text-lg font-extrabold leading-tight"
+                        style={{ color: cat.theme.textLight, fontFamily: cat.theme.fontHeading }}
+                      >
+                        {cat.business.name}
+                      </div>
+                      <div
+                        className="text-[11px] mt-1"
+                        style={{ color: cat.theme.textLight, opacity: 0.7 }}
+                      >
+                        {cat.business.city}
+                      </div>
+                    </div>
+                    <div
+                      className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-black"
+                      style={{
+                        background: cat.theme.primary,
+                        color: cat.theme.bgLight
+                      }}
+                    >
+                      {cat.shortName.charAt(0)}
+                    </div>
                   </div>
                 </div>
 
-                {/* Stats */}
-                <div className="grid grid-cols-3 gap-2 pt-3 border-t border-[#292929]">
+                {/* Card body */}
+                <div className="p-5 space-y-4" onClick={() => handleSelectCategory(cat)}>
                   <div>
-                    <div className="text-[10px] text-[#737373] uppercase">{cat.moduleCount} Modules</div>
-                    <div className="text-xs font-bold text-[#10B981]">Admin + Frontend</div>
+                    <h3 className="text-base font-bold text-[#F5F5F5]">{cat.name}</h3>
+                    <p className="text-xs text-[#A3A3A3] mt-1 leading-relaxed">{cat.description}</p>
                   </div>
-                  <div>
-                    <div className="text-[10px] text-[#737373] uppercase">{cat.pageEstimate} Pages</div>
-                    <div className="text-xs font-bold text-[#F5F5F5]">+ 6 Legal</div>
-                  </div>
-                  <div>
-                    <div className="text-[10px] text-[#737373] uppercase">PWA</div>
-                    <div className="text-xs font-bold text-[#10B981]">✓ Ready</div>
-                  </div>
-                </div>
 
-                {/* CTA */}
-                <div className="flex items-center justify-between pt-3 border-t border-[#292929]">
-                  <span className="text-[11px] text-[#737373]">{cat.features.length} features</span>
-                  <div className="flex items-center gap-1 text-[#10B981] text-xs font-semibold group-hover:gap-2 transition-all">
-                    Preview Demo
-                    <ChevronRight className="w-3.5 h-3.5" />
+                  {/* Theme swatches */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-[#737373] uppercase tracking-wider">Palette:</span>
+                    <div className="flex gap-1">
+                      {[cat.theme.primary, cat.theme.accent, cat.theme.bgDark, cat.theme.bgLight].map((c, i) => (
+                        <div
+                          key={i}
+                          className="w-4 h-4 rounded border border-[#292929]"
+                          style={{ background: c }}
+                          title={c}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-2 pt-3 border-t border-[#292929]">
+                    <div>
+                      <div className="text-[10px] text-[#737373] uppercase">{cat.moduleCount} Modules</div>
+                      <div className="text-xs font-bold text-[#10B981]">Admin + Frontend</div>
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#737373] uppercase">{cat.pageEstimate} Pages</div>
+                      <div className="text-xs font-bold text-[#F5F5F5]">+ 6 Legal</div>
+                    </div>
+                    <div>
+                      <div className="text-[10px] text-[#737373] uppercase">PWA</div>
+                      <div className="text-xs font-bold text-[#10B981]">✓ Ready</div>
+                    </div>
+                  </div>
+
+                  {/* CTAs */}
+                  <div className="flex items-center gap-2 pt-3 border-t border-[#292929]">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); handleSelectCategory(cat); }}
+                      className="flex-1 px-3 py-2 bg-[#10B981] text-[#080808] rounded-lg text-xs font-bold hover:bg-[#10B981]/90 transition-colors"
+                    >
+                      Use Template
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelectCategory(cat);
+                        setWorkflowStep('preview');
+                      }}
+                      className="px-3 py-2 bg-[#151515] text-[#A3A3A3] border border-[#292929] rounded-lg text-xs font-semibold hover:text-[#F5F5F5] transition-colors"
+                    >
+                      Preview
+                    </button>
                   </div>
                 </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* AI CUSTOM APP PROMPT SECTION */}
+        <Card className="p-6 space-y-4 bg-gradient-to-br from-[#0D0D0D] to-[#1C1C1C] border-[#292929]">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[#10B981]/15 border border-[#10B981]/30 flex items-center justify-center">
+              <MessageSquare className="w-5 h-5 text-[#10B981]" />
+            </div>
+            <div>
+              <h2 className="text-base font-bold text-[#F5F5F5]">AI Custom App Prompt</h2>
+              <p className="text-xs text-[#A3A3A3]">
+                Need something special? Get a custom build prompt from BRANIFY AI and paste it here.
+              </p>
+            </div>
+          </div>
+
+          {/* Prompt textarea */}
+          <div className="relative">
+            <textarea
+              value={customPrompt}
+              onChange={(e) => setCustomPrompt(e.target.value)}
+              rows={5}
+              maxLength={2000}
+              placeholder="e.g. Create a luxury Dubai medical spa booking application with therapist scheduling, membership management and WhatsApp booking."
+              className="w-full bg-[#080808] border border-[#292929] rounded-xl px-4 py-3 text-sm text-[#F5F5F5] placeholder-[#525252] focus:outline-none focus:border-[#10B981] resize-y font-mono"
+            />
+            <span className="absolute bottom-2 right-3 text-[10px] text-[#737373] font-mono">
+              {customPrompt.length}/2000
+            </span>
+          </div>
+
+          {/* Action buttons */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <Button
+              variant="primary"
+              onClick={handleGenerateCustomPrompt}
+              isLoading={isGeneratingPrompt}
+              disabled={isGeneratingPrompt || customPrompt.trim().length < 10}
+              icon={isGeneratingPrompt ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
+            >
+              {isGeneratingPrompt ? 'Generating...' : 'Generate Custom App'}
+            </Button>
+            <Button
+              variant="ghost"
+              onClick={() => {
+                setCustomPrompt('');
+                setPromptResult(null);
+              }}
+              icon={<Check className="w-4 h-4" />}
+            >
+              Clear
+            </Button>
+            <span className="text-[11px] text-[#737373] ml-auto">
+              Powered by VectorEngine — API key stays server-side
+            </span>
+          </div>
+
+          {/* Prompt history */}
+          {promptHistory.length > 0 && (
+            <div className="pt-4 border-t border-[#292929]">
+              <div className="text-[11px] text-[#737373] uppercase tracking-wider mb-2">Recent Prompts</div>
+              <div className="flex flex-col gap-1.5">
+                {promptHistory.map((p, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCustomPrompt(p)}
+                    className="text-left text-xs text-[#A3A3A3] hover:text-[#F5F5F5] p-2 rounded-lg bg-[#151515] hover:bg-[#1C1C1C] transition-colors truncate"
+                  >
+                    {p.length > 80 ? p.slice(0, 80) + '...' : p}
+                  </button>
+                ))}
               </div>
-            </Card>
-          ))}
+            </div>
+          )}
+
+          {/* Result */}
+          {promptResult && (
+            <div className={`rounded-xl border p-4 ${
+              promptResult.success
+                ? 'bg-[#10B981]/5 border-[#10B981]/30'
+                : 'bg-red-950/30 border-red-800/50'
+            }`}>
+              {promptResult.success ? (
+                <>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-[#10B981]" />
+                      <span className="text-xs font-bold text-[#10B981]">Generated Specification</span>
+                    </div>
+                    <span className="text-[10px] text-[#737373]">
+                      Model: {promptResult.model} • {promptResult.latencyMs}ms
+                    </span>
+                  </div>
+                  <pre className="text-xs text-[#D4D4D4] whitespace-pre-wrap font-mono leading-relaxed max-h-80 overflow-y-auto">
+                    {promptResult.content}
+                  </pre>
+                  <div className="flex gap-2 mt-4 pt-3 border-t border-[#292929]">
+                    <Button
+                      variant="primary"
+                      onClick={() => {
+                        // Pick the closest premium template based on prompt content
+                        const lower = customPrompt.toLowerCase();
+                        let template = PREMIUM_TEMPLATES[2]; // default spa
+                        if (lower.includes('gent') || lower.includes('men') || lower.includes('barber')) {
+                          template = PREMIUM_TEMPLATES[0];
+                        } else if (lower.includes('ladies') || lower.includes('women') || lower.includes('bridal') || lower.includes('beauty')) {
+                          template = PREMIUM_TEMPLATES[1];
+                        } else if (lower.includes('spa') || lower.includes('wellness') || lower.includes('massage')) {
+                          template = PREMIUM_TEMPLATES[2];
+                        }
+                        handleSelectCategory(template);
+                      }}
+                      icon={<ArrowRight className="w-4 h-4" />}
+                    >
+                      Use Closest Template
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <div className="flex items-start gap-2">
+                  <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                  <div>
+                    <div className="text-xs font-bold text-red-300 mb-1">Generation Issue</div>
+                    <p className="text-xs text-red-200">{promptResult.error}</p>
+                    {promptResult.content && (
+                      <pre className="text-xs text-[#A3A3A3] whitespace-pre-wrap font-mono mt-2 max-h-40 overflow-y-auto">
+                        {promptResult.content.slice(0, 500)}
+                      </pre>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </Card>
+
+        {/* GENERAL CATALOG — 10 categories (collapsible) */}
+        <div>
+          <button
+            onClick={() => setShowAllCategories(!showAllCategories)}
+            className="w-full flex items-center justify-between p-4 rounded-xl bg-[#0D0D0D] border border-[#292929] hover:border-[#3A3A3A] transition-colors"
+          >
+            <div className="flex items-center gap-2">
+              <ShoppingBag className="w-4 h-4 text-[#A3A3A3]" />
+              <span className="text-sm font-bold text-[#F5F5F5]">All 10 BRANIFY Categories</span>
+              <span className="text-xs text-[#737373]">({ALL_CATEGORIES.length} templates)</span>
+            </div>
+            {showAllCategories ? (
+              <ChevronUp className="w-4 h-4 text-[#737373]" />
+            ) : (
+              <ChevronDown className="w-4 h-4 text-[#737373]" />
+            )}
+          </button>
+
+          {showAllCategories && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-4">
+              {ALL_CATEGORIES.map((cat) => (
+                <Card
+                  key={cat.id}
+                  className="p-0 bg-[#0D0D0D] border-[#292929] hover:border-[#10B981]/50 transition-all overflow-hidden cursor-pointer group"
+                >
+                  <div
+                    className="h-24 relative"
+                    style={{ background: cat.hero.gradient }}
+                    onClick={() => handleSelectCategory(cat)}
+                  >
+                    <div className="absolute inset-0 flex items-center justify-between p-4">
+                      <div>
+                        <div className="text-[10px] font-bold uppercase tracking-wider mb-1" style={{ color: cat.theme.accent }}>
+                          {cat.theme.tone}
+                        </div>
+                        <div className="text-sm font-extrabold" style={{ color: cat.theme.textLight, fontFamily: cat.theme.fontHeading }}>
+                          {cat.business.name}
+                        </div>
+                      </div>
+                      <div className="w-10 h-10 rounded-lg flex items-center justify-center text-lg font-black" style={{ background: cat.theme.primary, color: cat.theme.bgLight }}>
+                        {cat.shortName.charAt(0)}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="p-4" onClick={() => handleSelectCategory(cat)}>
+                    <h3 className="text-sm font-bold text-[#F5F5F5]">{cat.name}</h3>
+                    <p className="text-[11px] text-[#A3A3A3] mt-1 line-clamp-2">{cat.description}</p>
+                    <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#292929]">
+                      <span className="text-[10px] text-[#737373]">{cat.moduleCount} modules</span>
+                      <span className="text-[10px] text-[#10B981] font-semibold flex items-center gap-1">
+                        Preview <ChevronRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     );
