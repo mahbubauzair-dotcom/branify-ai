@@ -950,7 +950,13 @@ async function startServer() {
   }
 }
 
-startServer();
+// Only start the server in local dev / local production preview. On Vercel,
+// the serverless function handler is invoked directly per-request — there is
+// no need (and no benefit) to call startServer() at module load time, and
+// calling it could introduce side-effect ordering issues during cold-start.
+if (!process.env.VERCEL) {
+  startServer();
+}
 
 export default app;
 
