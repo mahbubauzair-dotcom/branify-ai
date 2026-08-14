@@ -54,19 +54,19 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-stone-950 text-stone-100 flex flex-col md:flex-row selection:bg-blue-500 selection:text-stone-950">
+    <div className="min-h-screen bg-stone-950 text-stone-100 flex flex-col md:flex-row selection:bg-zinc-500 selection:text-stone-950">
       
       {/* Mobile Top Navigation Header */}
       <div className="md:hidden bg-stone-900 border-b border-stone-800 px-4 py-3 flex items-center justify-between sticky top-0 z-40">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-blue-500 flex items-center justify-center font-bold text-stone-950 text-sm">
+          <div className="w-8 h-8 rounded-lg bg-zinc-500 flex items-center justify-center font-bold text-stone-950 text-sm">
             AG
           </div>
           <div>
             <span className="font-heading font-extrabold text-stone-100 text-sm block leading-none">
               {config.salonName}
             </span>
-            <span className="text-[10px] font-semibold text-blue-400 uppercase tracking-wider block mt-0.5">
+            <span className="text-[10px] font-semibold text-zinc-400 uppercase tracking-wider block mt-0.5">
               Admin Control Panel
             </span>
           </div>
@@ -74,7 +74,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
 
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 rounded-lg bg-stone-800 text-stone-200 hover:text-blue-400 border border-stone-700"
+          className="p-2 rounded-lg bg-stone-800 text-stone-200 hover:text-zinc-400 border border-stone-700"
           aria-label="Toggle Navigation Menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -91,15 +91,15 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         <div>
           <div className="p-6 border-b border-stone-800">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-500 text-stone-950 flex items-center justify-center font-black text-lg shadow-lg shadow-blue-500/20 shrink-0">
+              <div className="w-10 h-10 rounded-xl bg-zinc-500 text-stone-950 flex items-center justify-center font-black text-lg shadow-lg shadow-zinc-500/20 shrink-0">
                 A
               </div>
               <div>
                 <h1 className="font-heading font-black text-stone-100 text-base tracking-tight uppercase leading-snug">
                   {config.salonName?.toUpperCase() || "ROYAL CROWN GENTS SALON"}
                 </h1>
-                <p className="text-[11px] font-semibold text-blue-400 tracking-wider uppercase mt-0.5 flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-blue-400 inline" />
+                <p className="text-[11px] font-semibold text-zinc-400 tracking-wider uppercase mt-0.5 flex items-center gap-1">
+                  <ShieldCheck className="w-3 h-3 text-zinc-400 inline" />
                   Owner Admin
                 </p>
               </div>
@@ -118,13 +118,13 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                   className={`
                     w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all text-left
                     ${isActive 
-                      ? 'bg-blue-500 text-stone-950 font-bold shadow-md shadow-blue-500/10' 
+                      ? 'bg-zinc-500 text-stone-950 font-bold shadow-md shadow-zinc-500/10' 
                       : 'text-stone-300 hover:bg-stone-800 hover:text-stone-100'
                     }
                   `}
                 >
                   <div className="flex items-center gap-3">
-                    <Icon className={`w-4 h-4 ${isActive ? 'text-stone-950' : 'text-blue-400'}`} />
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-stone-950' : 'text-zinc-400'}`} />
                     <span>{item.label}</span>
                   </div>
                   {isActive && <ChevronRight className="w-4 h-4 text-stone-950" />}
@@ -189,7 +189,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             </button>
 
             <div className="flex items-center gap-2 pl-4 border-l border-stone-800">
-              <div className="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center text-xs font-bold">
+              <div className="w-8 h-8 rounded-full bg-zinc-500/20 text-zinc-400 border border-zinc-500/30 flex items-center justify-center text-xs font-bold">
                 A
               </div>
               <span className="text-xs font-medium text-stone-300">

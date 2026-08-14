@@ -43,7 +43,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="text-xs font-bold text-blue-400 tracking-widest uppercase block mb-2">
+          <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase block mb-2">
             Dubai Service Menu
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold font-display text-stone-100">
@@ -63,7 +63,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search services (e.g. skin fade, beard, facial)..."
-              className="w-full bg-stone-900 border border-stone-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-stone-100 focus:border-blue-500 focus:outline-none"
+              className="w-full bg-stone-900 border border-stone-800 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-stone-100 focus:border-zinc-500 focus:outline-none"
             />
           </div>
 
@@ -74,7 +74,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                   selectedCategory === cat.id
-                    ? 'bg-blue-500 text-stone-950 font-bold shadow-md'
+                    ? 'bg-zinc-500 text-stone-950 font-bold shadow-md'
                     : 'bg-stone-900 text-stone-300 hover:text-white border border-stone-800'
                 }`}
               >
@@ -89,11 +89,11 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
           {filteredServices.map((service) => (
             <div
               key={service.id}
-              className="bg-stone-900/80 rounded-2xl border border-stone-800 p-6 flex flex-col justify-between hover:border-blue-500/40 transition-all group"
+              className="bg-stone-900/80 rounded-2xl border border-stone-800 p-6 flex flex-col justify-between hover:border-zinc-500/40 transition-all group"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 bg-blue-500/10 px-2.5 py-0.5 rounded-full border border-blue-500/20">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 bg-zinc-500/10 px-2.5 py-0.5 rounded-full border border-zinc-500/20">
                     {service.tier.toUpperCase()} TIER
                   </span>
                   <span className="text-xs font-bold text-stone-200 bg-stone-950 px-2.5 py-1 rounded-md border border-stone-800">
@@ -101,7 +101,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                   </span>
                 </div>
 
-                <h3 className="font-heading font-bold text-stone-100 text-lg group-hover:text-blue-400 transition-colors mb-2">
+                <h3 className="font-heading font-bold text-stone-100 text-lg group-hover:text-zinc-400 transition-colors mb-2">
                   {service.name}
                 </h3>
 
@@ -110,7 +110,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 </p>
 
                 <div className="flex items-center gap-2 text-[11px] text-stone-400 mb-4">
-                  <Clock className="w-3.5 h-3.5 text-blue-400" />
+                  <Clock className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Duration: {service.duration}</span>
                 </div>
               </div>
@@ -124,7 +124,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 </button>
                 <button
                   onClick={() => onOpenBooking(service.id)}
-                  className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-bold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider flex items-center gap-1.5 transition-colors"
+                  className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-bold px-4 py-2.5 rounded-xl text-xs uppercase tracking-wider flex items-center gap-1.5 transition-colors"
                 >
                   <Calendar className="w-3.5 h-3.5" />
                   <span>Book</span>

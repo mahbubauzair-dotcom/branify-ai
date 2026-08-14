@@ -48,13 +48,13 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-stone-800">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+            <div className="w-8 h-8 rounded-lg bg-zinc-500/10 border border-zinc-500/30 flex items-center justify-center text-zinc-400">
               <Settings2 className="w-4 h-4" />
             </div>
             <div>
               <h3 className="font-heading font-bold text-stone-100 text-lg flex items-center gap-2">
                 Master Template Settings
-                <span className="text-[10px] bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-full uppercase">
+                <span className="text-[10px] bg-zinc-500/20 text-zinc-400 border border-zinc-500/30 px-2 py-0.5 rounded-full uppercase">
                   Sales Demo Mode
                 </span>
               </h3>
@@ -80,7 +80,7 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
               name="salonName"
               value={formData.salonName}
               onChange={handleChange}
-              className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+              className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
               required
             />
           </div>
@@ -94,7 +94,7 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
               name="tagline"
               value={formData.tagline}
               onChange={handleChange}
-              className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+              className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
               required
             />
           </div>
@@ -109,7 +109,7 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -122,7 +122,7 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
                 name="whatsapp"
                 value={formData.whatsapp}
                 onChange={handleChange}
-                className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
               />
             </div>
           </div>
@@ -136,7 +136,7 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+              className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
             />
           </div>
 
@@ -150,7 +150,7 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -163,14 +163,14 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
                 name="currency"
                 value={formData.currency}
                 onChange={handleChange}
-                className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
               />
             </div>
           </div>
 
           <div className="p-3 bg-stone-950 rounded-lg border border-stone-800 text-xs text-stone-400 space-y-1">
             <p className="font-semibold text-stone-300 flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" /> Agency Master Template Feature
+              <Sparkles className="w-3.5 h-3.5 text-zinc-400" /> Agency Master Template Feature
             </p>
             <p>Changes apply instantly across all pages, booking forms, location cards, and footers.</p>
           </div>
@@ -191,7 +191,7 @@ export const TemplateCustomizer: React.FC<TemplateCustomizerProps> = ({
 
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-semibold px-5 py-2 rounded-lg text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all"
+              className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-semibold px-5 py-2 rounded-lg text-xs uppercase tracking-wider flex items-center gap-1.5 transition-all"
             >
               {savedSuccess ? (
                 <>

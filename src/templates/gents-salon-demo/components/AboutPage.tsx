@@ -18,7 +18,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ config, onOpenBooking }) =
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             
             <div className="space-y-4">
-              <span className="text-xs font-bold text-blue-400 tracking-widest uppercase font-mono">
+              <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase font-mono">
                 About Royal Crown Gents Salon
               </span>
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-100">
@@ -73,7 +73,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ config, onOpenBooking }) =
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-stone-900/80 p-6 rounded-2xl border border-stone-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+            <div className="w-10 h-10 rounded-xl bg-zinc-500/10 border border-zinc-500/20 flex items-center justify-center text-zinc-400">
               <Users className="w-5 h-5" />
             </div>
             <h3 className="font-heading font-bold text-stone-100 text-lg">Everyday Grooming</h3>
@@ -83,7 +83,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ config, onOpenBooking }) =
           </div>
 
           <div className="bg-stone-900/80 p-6 rounded-2xl border border-stone-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+            <div className="w-10 h-10 rounded-xl bg-zinc-500/10 border border-zinc-500/20 flex items-center justify-center text-zinc-400">
               <Shield className="w-5 h-5" />
             </div>
             <h3 className="font-heading font-bold text-stone-100 text-lg">Clean Hygiene</h3>
@@ -93,7 +93,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ config, onOpenBooking }) =
           </div>
 
           <div className="bg-stone-900/80 p-6 rounded-2xl border border-stone-800 space-y-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+            <div className="w-10 h-10 rounded-xl bg-zinc-500/10 border border-zinc-500/20 flex items-center justify-center text-zinc-400">
               <HeartHandshake className="w-5 h-5" />
             </div>
             <h3 className="font-heading font-bold text-stone-100 text-lg">Welcoming Atmosphere</h3>

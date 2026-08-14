@@ -36,17 +36,17 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
   };
 
   return (
-    <div className="min-h-screen bg-stone-950 text-stone-100 flex items-center justify-center p-4 selection:bg-blue-500 selection:text-stone-950 relative overflow-hidden">
+    <div className="min-h-screen bg-stone-950 text-stone-100 flex items-center justify-center p-4 selection:bg-zinc-500 selection:text-stone-950 relative overflow-hidden">
       
       {/* Background Decorative Lighting */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-zinc-500/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-zinc-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="w-full max-w-md bg-stone-900 border border-stone-800 rounded-3xl p-8 shadow-2xl relative z-10">
         
         {/* Salon Logo & Header */}
         <div className="text-center space-y-2 mb-8">
-          <div className="w-14 h-14 mx-auto rounded-2xl bg-blue-500 text-stone-950 font-black text-2xl flex items-center justify-center shadow-xl shadow-blue-500/20">
+          <div className="w-14 h-14 mx-auto rounded-2xl bg-zinc-500 text-stone-950 font-black text-2xl flex items-center justify-center shadow-xl shadow-zinc-500/20">
             R
           </div>
           
@@ -54,7 +54,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
             {config.salonName?.toUpperCase() || 'ROYAL CROWN GENTS SALON'}
           </h1>
           
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-950 border border-blue-500/30 text-blue-400 text-xs font-semibold tracking-wider uppercase">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-950 border border-zinc-500/30 text-zinc-400 text-xs font-semibold tracking-wider uppercase">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Salon Admin</span>
           </div>
@@ -78,7 +78,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
               <button
                 type="button"
                 onClick={() => setForgotModalOpen(true)}
-                className="text-xs text-blue-400 hover:underline font-medium"
+                className="text-xs text-zinc-400 hover:underline font-medium"
               >
                 Forgot Password?
               </button>
@@ -91,7 +91,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="Enter any password (demo mode)"
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl pl-10 pr-4 py-3 text-stone-100 text-sm focus:border-blue-500 focus:outline-none transition-colors"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl pl-10 pr-4 py-3 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none transition-colors"
               />
             </div>
           </div>
@@ -99,7 +99,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold py-3.5 rounded-xl text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 active:scale-98 disabled:opacity-50"
+            className="w-full bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold py-3.5 rounded-xl text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-lg shadow-zinc-500/20 active:scale-98 disabled:opacity-50"
           >
             {isSubmitting ? (
               <span>Authenticating...</span>
@@ -117,7 +117,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
           <button
             type="button"
             onClick={onNavigatePublic}
-            className="text-xs text-stone-300 hover:text-blue-400 transition-colors font-medium"
+            className="text-xs text-stone-300 hover:text-zinc-400 transition-colors font-medium"
           >
             ← Back to Public Website
           </button>
@@ -129,7 +129,7 @@ export const AdminLogin: React.FC<AdminLoginProps> = ({ onSuccess, onNavigatePub
       {forgotModalOpen && (
         <div className="fixed inset-0 bg-stone-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 max-w-sm w-full space-y-4">
-            <div className="flex items-center gap-2 text-blue-400 font-bold text-sm">
+            <div className="flex items-center gap-2 text-zinc-400 font-bold text-sm">
               <Key className="w-4 h-4" />
               <span>Password Reset Request</span>
             </div>

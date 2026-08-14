@@ -118,7 +118,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
         {/* Header */}
         <div className="p-5 bg-stone-950 border-b border-stone-800 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+            <div className="w-9 h-9 rounded-lg bg-zinc-500/10 border border-zinc-500/30 flex items-center justify-center text-zinc-400">
               <Calendar className="w-5 h-5" />
             </div>
             <div>
@@ -152,7 +152,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                   Appointment Request Received
                 </h4>
                 <p className="text-sm text-stone-300 max-w-md mx-auto leading-relaxed">
-                  Your appointment request has been received. <span className="font-bold text-blue-400">{config.salonName}</span> will contact you to confirm availability.
+                  Your appointment request has been received. <span className="font-bold text-zinc-400">{config.salonName}</span> will contact you to confirm availability.
                 </p>
               </div>
 
@@ -163,7 +163,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                 </div>
                 <div className="flex justify-between">
                   <span>Starting Price:</span>
-                  <span className="font-bold text-blue-400">{config.currency} {selectedServiceObj?.startingPrice}</span>
+                  <span className="font-bold text-zinc-400">{config.currency} {selectedServiceObj?.startingPrice}</span>
                 </div>
               </div>
 
@@ -203,7 +203,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                     value={form.fullName}
                     onChange={e => setForm({ ...form, fullName: e.target.value })}
                     placeholder="e.g. Tariq Ahmad"
-                    className="w-full bg-stone-950 border border-stone-700 rounded-lg pl-9 pr-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-lg pl-9 pr-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
                 {errors.fullName && <p className="text-[11px] text-red-400 mt-1">{errors.fullName}</p>}
@@ -222,7 +222,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                       value={form.phone}
                       onChange={e => setForm({ ...form, phone: e.target.value })}
                       placeholder="+971 50 000 0000"
-                      className="w-full bg-stone-950 border border-stone-700 rounded-lg pl-9 pr-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                      className="w-full bg-stone-950 border border-stone-700 rounded-lg pl-9 pr-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                     />
                   </div>
                   {errors.phone && <p className="text-[11px] text-red-400 mt-1">{errors.phone}</p>}
@@ -239,7 +239,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                       value={form.email}
                       onChange={e => setForm({ ...form, email: e.target.value })}
                       placeholder="client@example.ae"
-                      className="w-full bg-stone-950 border border-stone-700 rounded-lg pl-9 pr-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                      className="w-full bg-stone-950 border border-stone-700 rounded-lg pl-9 pr-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                     />
                   </div>
                   {errors.email && <p className="text-[11px] text-red-400 mt-1">{errors.email}</p>}
@@ -257,7 +257,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                     min={todayStr}
                     value={form.preferredDate}
                     onChange={e => setForm({ ...form, preferredDate: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                   />
                   {errors.preferredDate && <p className="text-[11px] text-red-400 mt-1">{errors.preferredDate}</p>}
                 </div>
@@ -269,7 +269,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                   <select
                     value={form.preferredTime}
                     onChange={e => setForm({ ...form, preferredTime: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                   >
                     <option value="10:00">10:00 AM</option>
                     <option value="11:30">11:30 AM</option>
@@ -292,7 +292,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                 <select
                   value={form.serviceId}
                   onChange={e => setForm({ ...form, serviceId: e.target.value })}
-                  className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                 >
                   {filteredServices.map(s => (
                     <option key={s.id} value={s.id}>
@@ -311,7 +311,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                   <select
                     value={form.numberOfGuests}
                     onChange={e => setForm({ ...form, numberOfGuests: parseInt(e.target.value) })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                   >
                     <option value={1}>1 Person</option>
                     <option value={2}>2 Persons (Friends / Family)</option>
@@ -326,7 +326,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                   <select
                     value={form.preferredBarber}
                     onChange={e => setForm({ ...form, preferredBarber: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                   >
                     <option value="Any Master Barber">First Available Master Barber</option>
                     <option value="Senior Fade Specialist">Senior Fade Specialist</option>
@@ -346,7 +346,7 @@ ${form.specialRequest ? `- Notes: ${form.specialRequest}` : ''}`;
                   onChange={e => setForm({ ...form, specialRequest: e.target.value })}
                   rows={2}
                   placeholder="e.g. Sensitive skin, skin fade preferencia, or promotional package claim..."
-                  className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none resize-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none resize-none"
                 />
               </div>
 

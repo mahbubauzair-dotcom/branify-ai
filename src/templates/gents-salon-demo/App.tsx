@@ -193,7 +193,7 @@ function MainAppContent() {
 
   // PUBLIC WEBSITE RENDER
   return (
-    <div className="min-h-screen bg-stone-950 text-stone-100 font-sans flex flex-col justify-between selection:bg-blue-500 selection:text-stone-950">
+    <div className="min-h-screen bg-stone-950 text-stone-100 font-sans flex flex-col justify-between selection:bg-zinc-500 selection:text-stone-950">
       
       <div>
         {/* Top Information Bar */}

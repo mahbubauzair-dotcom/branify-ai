@@ -11,7 +11,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({ config, onOpenBooking 
   return (
     <div className="py-12 bg-stone-950 min-h-screen space-y-12 animate-fadeIn">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-        <span className="text-xs font-bold text-blue-400 tracking-widest uppercase block mb-2">
+        <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase block mb-2">
           Transparent Dubai Rates
         </span>
         <h1 className="text-3xl sm:text-5xl font-extrabold font-display text-stone-100">

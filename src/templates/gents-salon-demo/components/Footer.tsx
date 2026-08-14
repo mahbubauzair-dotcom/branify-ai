@@ -35,9 +35,9 @@ export const Footer: React.FC<FooterProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Top App Download Footer Banner Card */}
-        <div className="bg-gradient-to-r from-stone-900 via-stone-900 to-blue-950/40 rounded-2xl p-6 sm:p-8 border border-stone-800 shadow-2xl mb-16 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="bg-gradient-to-r from-stone-900 via-stone-900 to-zinc-950/40 rounded-2xl p-6 sm:p-8 border border-stone-800 shadow-2xl mb-16 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+            <div className="w-14 h-14 rounded-2xl bg-zinc-500/10 border border-zinc-500/30 flex items-center justify-center text-zinc-400 shrink-0">
               <Smartphone className="w-7 h-7" />
             </div>
             <div>
@@ -78,14 +78,14 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Col 1: Brand Info (2 cols width) */}
           <div className="lg:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-lg bg-stone-900 border border-blue-500/30 flex items-center justify-center text-blue-400">
+              <div className="w-10 h-10 rounded-lg bg-stone-900 border border-zinc-500/30 flex items-center justify-center text-zinc-400">
                 <Scissors className="w-5 h-5 rotate-45" />
               </div>
               <div>
                 <span className="font-display text-xl font-bold tracking-wider text-stone-100 block">
                   {config.salonName}
                 </span>
-                <span className="text-[10px] text-blue-400 tracking-widest uppercase font-medium block">
+                <span className="text-[10px] text-zinc-400 tracking-widest uppercase font-medium block">
                   {config.tagline}
                 </span>
               </div>
@@ -100,7 +100,7 @@ export const Footer: React.FC<FooterProps> = ({
                 href={`https://instagram.com/${config.instagram.replace('@', '')}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 rounded-lg bg-stone-900 border border-stone-800 flex items-center justify-center text-stone-300 hover:text-blue-400 hover:border-blue-500/40 transition-colors"
+                className="w-9 h-9 rounded-lg bg-stone-900 border border-stone-800 flex items-center justify-center text-stone-300 hover:text-zinc-400 hover:border-zinc-500/40 transition-colors"
                 title="Instagram"
               >
                 <Instagram className="w-4 h-4" />
@@ -118,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({
 
               <button
                 onClick={onOpenBooking}
-                className="bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors ml-2"
+                className="bg-zinc-500/10 hover:bg-zinc-500/20 text-zinc-400 border border-zinc-500/30 px-3 py-2 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors ml-2"
               >
                 <Calendar className="w-3.5 h-3.5" />
                 <span>Book Appointment</span>
@@ -133,37 +133,37 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <ul className="space-y-2 text-xs text-stone-400">
               <li>
-                <button onClick={() => onNavigate('home')} className="hover:text-blue-400 transition-colors">
+                <button onClick={() => onNavigate('home')} className="hover:text-zinc-400 transition-colors">
                   Home
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('about')} className="hover:text-blue-400 transition-colors">
+                <button onClick={() => onNavigate('about')} className="hover:text-zinc-400 transition-colors">
                   About Our Salon
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('services')} className="hover:text-blue-400 transition-colors">
+                <button onClick={() => onNavigate('services')} className="hover:text-zinc-400 transition-colors">
                   All Services
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('pricing')} className="hover:text-blue-400 transition-colors">
+                <button onClick={() => onNavigate('pricing')} className="hover:text-zinc-400 transition-colors">
                   Pricing Tiers
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('gallery')} className="hover:text-blue-400 transition-colors">
+                <button onClick={() => onNavigate('gallery')} className="hover:text-zinc-400 transition-colors">
                   Photo Gallery
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('offers')} className="hover:text-blue-400 transition-colors">
+                <button onClick={() => onNavigate('offers')} className="hover:text-zinc-400 transition-colors">
                   Special Offers
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('contact')} className="hover:text-blue-400 transition-colors">
+                <button onClick={() => onNavigate('contact')} className="hover:text-zinc-400 transition-colors">
                   Contact & Hours
                 </button>
               </li>
@@ -192,16 +192,16 @@ export const Footer: React.FC<FooterProps> = ({
             </h4>
             <div className="space-y-2.5 text-xs text-stone-400">
               <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-zinc-400 shrink-0 mt-0.5" />
                 <span>{config.address}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-blue-400 shrink-0" />
-                <a href={`tel:${config.phone}`} className="hover:text-blue-400">{config.phone}</a>
+                <Phone className="w-4 h-4 text-zinc-400 shrink-0" />
+                <a href={`tel:${config.phone}`} className="hover:text-zinc-400">{config.phone}</a>
               </div>
               <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
-                <a href={`mailto:${config.email}`} className="hover:text-blue-400">{config.email}</a>
+                <Mail className="w-4 h-4 text-zinc-400 shrink-0" />
+                <a href={`mailto:${config.email}`} className="hover:text-zinc-400">{config.email}</a>
               </div>
             </div>
           </div>
@@ -215,24 +215,24 @@ export const Footer: React.FC<FooterProps> = ({
           </p>
 
           <div className="flex flex-wrap items-center gap-4 text-[11px]">
-            <button onClick={() => onOpenLegal('privacy')} className="hover:text-blue-400 transition-colors">
+            <button onClick={() => onOpenLegal('privacy')} className="hover:text-zinc-400 transition-colors">
               Privacy Policy
             </button>
-            <button onClick={() => onOpenLegal('terms')} className="hover:text-blue-400 transition-colors">
+            <button onClick={() => onOpenLegal('terms')} className="hover:text-zinc-400 transition-colors">
               Terms & Conditions
             </button>
-            <button onClick={() => onOpenLegal('refunds')} className="hover:text-blue-400 transition-colors">
+            <button onClick={() => onOpenLegal('refunds')} className="hover:text-zinc-400 transition-colors">
               Cancellation Policy
             </button>
-            <button onClick={() => onOpenLegal('cookies')} className="hover:text-blue-400 transition-colors">
+            <button onClick={() => onOpenLegal('cookies')} className="hover:text-zinc-400 transition-colors">
               Cookie Policy
             </button>
-            <button onClick={() => onOpenLegal('disclaimer')} className="hover:text-blue-400 transition-colors">
+            <button onClick={() => onOpenLegal('disclaimer')} className="hover:text-zinc-400 transition-colors">
               Disclaimer
             </button>
             <a
               href="/template/gents-salon-demo/admin"
-              className="text-blue-500/70 hover:text-blue-400 transition-colors font-semibold"
+              className="text-zinc-500/70 hover:text-zinc-400 transition-colors font-semibold"
               title="Demo Admin Dashboard — any password works"
             >
               Demo Admin

@@ -41,7 +41,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
 
           {/* Service Title overlay */}
           <div className="absolute bottom-4 left-6 right-6">
-            <span className="text-[11px] font-bold uppercase tracking-wider text-blue-400 bg-stone-950/90 px-3 py-1 rounded-full border border-blue-500/30 inline-block mb-1">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-zinc-400 bg-stone-950/90 px-3 py-1 rounded-full border border-zinc-500/30 inline-block mb-1">
               {service.category.toUpperCase()} • {service.tier.toUpperCase()} TIER
             </span>
             <h3 className="font-heading text-2xl sm:text-3xl font-extrabold text-white">
@@ -57,7 +57,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
           <div className="flex items-center justify-between p-4 bg-stone-950 rounded-xl border border-stone-800">
             <div>
               <span className="text-xs text-stone-400 block uppercase tracking-wider">Starting Price</span>
-              <span className="text-2xl font-extrabold font-display text-blue-400">
+              <span className="text-2xl font-extrabold font-display text-zinc-400">
                 {config.currency} {service.startingPrice}
               </span>
             </div>
@@ -65,7 +65,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             <div className="text-right">
               <span className="text-xs text-stone-400 block uppercase tracking-wider">Est. Duration</span>
               <span className="text-sm font-bold text-stone-200 flex items-center justify-end gap-1">
-                <Clock className="w-4 h-4 text-blue-400" />
+                <Clock className="w-4 h-4 text-zinc-400" />
                 {service.duration}
               </span>
             </div>
@@ -89,7 +89,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {service.benefits.map((b, i) => (
                 <div key={i} className="flex items-start gap-2 text-xs text-stone-300 bg-stone-950/60 p-2.5 rounded-lg border border-stone-800">
-                  <Check className="w-3.5 h-3.5 text-blue-400 shrink-0 mt-0.5" />
+                  <Check className="w-3.5 h-3.5 text-zinc-400 shrink-0 mt-0.5" />
                   <span>{b}</span>
                 </div>
               ))}
@@ -98,8 +98,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
 
           {/* What to Expect */}
           <div className="space-y-3 pt-2 border-t border-stone-800">
-            <div className="p-3 bg-blue-500/5 rounded-xl border border-blue-500/20 text-xs text-stone-300">
-              <span className="font-bold text-blue-400 block mb-1">What To Expect:</span>
+            <div className="p-3 bg-zinc-500/5 rounded-xl border border-zinc-500/20 text-xs text-stone-300">
+              <span className="font-bold text-zinc-400 block mb-1">What To Expect:</span>
               <p>{service.whatToExpect}</p>
             </div>
 

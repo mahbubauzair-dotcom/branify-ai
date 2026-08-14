@@ -56,14 +56,14 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-3 text-left group"
           >
-            <div className="w-10 h-10 rounded-lg bg-stone-800 border border-blue-500/30 flex items-center justify-center text-blue-400 group-hover:border-blue-400 group-hover:bg-stone-700/80 transition-all shadow-md">
+            <div className="w-10 h-10 rounded-lg bg-stone-800 border border-zinc-500/30 flex items-center justify-center text-zinc-400 group-hover:border-zinc-400 group-hover:bg-stone-700/80 transition-all shadow-md">
               <Scissors className="w-5 h-5 rotate-45 group-hover:scale-110 transition-transform" />
             </div>
             <div>
               <span className="font-display text-lg sm:text-xl font-bold tracking-wider text-stone-100 block leading-tight">
                 {config.salonName}
               </span>
-              <span className="text-[10px] text-blue-400/90 tracking-widest uppercase font-medium block">
+              <span className="text-[10px] text-zinc-400/90 tracking-widest uppercase font-medium block">
                 {config.tagline}
               </span>
             </div>
@@ -79,13 +79,13 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => handleNavClick(item.page)}
                   className={`text-sm font-medium transition-colors py-1 relative ${
                     active 
-                      ? 'text-blue-400 font-semibold' 
+                      ? 'text-zinc-400 font-semibold' 
                       : 'text-stone-300 hover:text-white'
                   }`}
                 >
                   {item.label}
                   {active && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-zinc-500 rounded-full" />
                   )}
                 </button>
               );
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
               className={`flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium border transition-all ${
                 isPwaInstalled
                   ? 'bg-emerald-950/40 text-emerald-400 border-emerald-500/40'
-                  : 'bg-stone-800 text-stone-200 border-stone-700 hover:border-blue-500/50 hover:text-blue-400'
+                  : 'bg-stone-800 text-stone-200 border-stone-700 hover:border-zinc-500/50 hover:text-zinc-400'
               }`}
             >
               {isPwaInstalled ? (
@@ -110,7 +110,7 @@ export const Header: React.FC<HeaderProps> = ({
                 </>
               ) : (
                 <>
-                  <Download className="w-3.5 h-3.5 text-blue-400" />
+                  <Download className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Install App</span>
                 </>
               )}
@@ -130,7 +130,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Main Book Button */}
             <button
               onClick={onOpenBooking}
-              className="bg-bronze-gradient text-stone-950 font-semibold px-4 py-2.5 rounded-lg text-xs sm:text-sm tracking-wide uppercase shadow-lg shadow-blue-900/20 hover:brightness-110 active:scale-95 transition-all flex items-center gap-2"
+              className="bg-bronze-gradient text-stone-950 font-semibold px-4 py-2.5 rounded-lg text-xs sm:text-sm tracking-wide uppercase shadow-lg shadow-zinc-900/20 hover:brightness-110 active:scale-95 transition-all flex items-center gap-2"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Appointment</span>
@@ -149,7 +149,7 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-stone-800 text-stone-200 hover:text-blue-400 border border-stone-700 focus:outline-none"
+              className="p-2 rounded-lg bg-stone-800 text-stone-200 hover:text-zinc-400 border border-stone-700 focus:outline-none"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -169,7 +169,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => handleNavClick(item.page)}
                 className={`text-left px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                   currentPage === item.page
-                    ? 'bg-blue-500/10 text-blue-400 border border-blue-500/30'
+                    ? 'bg-zinc-500/10 text-zinc-400 border border-zinc-500/30'
                     : 'text-stone-300 hover:bg-stone-900'
                 }`}
               >
@@ -208,7 +208,7 @@ export const Header: React.FC<HeaderProps> = ({
                 }}
                 className="flex items-center justify-center gap-2 py-2.5 rounded-lg bg-stone-800 text-stone-200 border border-stone-700 text-xs font-medium"
               >
-                <Download className="w-4 h-4 text-blue-400" />
+                <Download className="w-4 h-4 text-zinc-400" />
                 <span>{isPwaInstalled ? '✓ Installed' : 'Install App'}</span>
               </button>
             </div>

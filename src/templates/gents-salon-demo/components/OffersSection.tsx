@@ -21,7 +21,7 @@ export const OffersSection: React.FC<OffersSectionProps> = ({ config, onOpenBook
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-500/10 border border-zinc-500/30 text-zinc-400 text-xs font-semibold uppercase tracking-wider mb-2">
             <Tag className="w-3.5 h-3.5" />
             <span>Special Value Bundles</span>
           </div>
@@ -38,27 +38,27 @@ export const OffersSection: React.FC<OffersSectionProps> = ({ config, onOpenBook
           {activeOffers.map((offer) => (
             <div
               key={offer.id}
-              className="bg-stone-950 rounded-2xl border border-stone-800 hover:border-blue-500/50 p-6 flex flex-col justify-between relative transition-all group"
+              className="bg-stone-950 rounded-2xl border border-stone-800 hover:border-zinc-500/50 p-6 flex flex-col justify-between relative transition-all group"
             >
               <div>
                 {/* Badge */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-[10px] uppercase tracking-wider font-bold bg-blue-500/10 text-blue-400 border border-blue-500/30 px-2.5 py-1 rounded-full">
+                  <span className="text-[10px] uppercase tracking-wider font-bold bg-zinc-500/10 text-zinc-400 border border-zinc-500/30 px-2.5 py-1 rounded-full">
                     {offer.badge}
                   </span>
-                  <span className="text-[10px] text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded border border-blue-500/20 font-mono">
+                  <span className="text-[10px] text-zinc-400 bg-zinc-500/10 px-2 py-0.5 rounded border border-zinc-500/20 font-mono">
                     SPECIAL OFFER
                   </span>
                 </div>
 
                 {/* Offer Title */}
-                <h3 className="font-heading font-bold text-stone-100 text-lg group-hover:text-blue-400 transition-colors mb-2">
+                <h3 className="font-heading font-bold text-stone-100 text-lg group-hover:text-zinc-400 transition-colors mb-2">
                   {offer.title}
                 </h3>
 
                 {/* Price */}
                 <div className="flex items-baseline gap-2 mb-4">
-                  <span className="text-2xl font-extrabold font-display text-blue-400">
+                  <span className="text-2xl font-extrabold font-display text-zinc-400">
                     {config.currency} {offer.price}
                   </span>
                   {offer.originalPrice && (
@@ -79,7 +79,7 @@ export const OffersSection: React.FC<OffersSectionProps> = ({ config, onOpenBook
                   </span>
                   {offer.includedServices.map((service, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-stone-300">
-                      <Check className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                      <Check className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
                       <span>{service}</span>
                     </div>
                   ))}
@@ -106,7 +106,7 @@ export const OffersSection: React.FC<OffersSectionProps> = ({ config, onOpenBook
 
         {/* Demo Disclaimer */}
         <div className="mt-8 text-center flex items-center justify-center gap-2 text-xs text-stone-400">
-          <AlertCircle className="w-3.5 h-3.5 text-blue-400" />
+          <AlertCircle className="w-3.5 h-3.5 text-zinc-400" />
           <span>Note: Offer pricing and terms are configurable demo promotions.</span>
         </div>
 

@@ -13,13 +13,13 @@ export const TopInfoBar: React.FC<TopInfoBarProps> = ({ config, onOpenCustomizer
       <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
         {/* Left: Location & Hours */}
         <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-          <div className="flex items-center gap-1.5 text-stone-300 hover:text-blue-400 transition-colors">
-            <MapPin className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+          <div className="flex items-center gap-1.5 text-stone-300 hover:text-zinc-400 transition-colors">
+            <MapPin className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
             <span className="truncate max-w-[200px] sm:max-w-xs">{config.address}</span>
           </div>
 
           <div className="hidden md:flex items-center gap-1.5 text-stone-400">
-            <Clock className="w-3.5 h-3.5 text-blue-500 shrink-0" />
+            <Clock className="w-3.5 h-3.5 text-zinc-500 shrink-0" />
             <span>Mon–Sat: {config.workingHoursMonSat} | Sun: {config.workingHoursSun}</span>
           </div>
         </div>
@@ -42,12 +42,12 @@ export const TopInfoBar: React.FC<TopInfoBarProps> = ({ config, onOpenCustomizer
           {/* Master Template Customizer Button */}
           <button
             onClick={onOpenCustomizer}
-            className="flex items-center gap-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2.5 py-0.5 rounded-full text-[11px] font-medium transition-all"
+            className="flex items-center gap-1.5 bg-zinc-500/10 hover:bg-zinc-500/20 text-zinc-400 border border-zinc-500/30 px-2.5 py-0.5 rounded-full text-[11px] font-medium transition-all"
             title="Configure Salon Branding Template"
           >
-            <Settings2 className="w-3 h-3 text-blue-400" />
+            <Settings2 className="w-3 h-3 text-zinc-400" />
             <span className="hidden xs:inline">Template Settings</span>
-            <Sparkles className="w-2.5 h-2.5 text-blue-300 animate-pulse" />
+            <Sparkles className="w-2.5 h-2.5 text-zinc-300 animate-pulse" />
           </button>
         </div>
       </div>

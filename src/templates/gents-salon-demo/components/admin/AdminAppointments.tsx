@@ -42,7 +42,7 @@ export const AdminAppointments: React.FC = () => {
       case 'Confirmed':
         return 'bg-emerald-950/80 border-emerald-500/40 text-emerald-400';
       case 'Pending':
-        return 'bg-blue-950/80 border-blue-500/40 text-blue-400';
+        return 'bg-zinc-950/80 border-zinc-500/40 text-zinc-400';
       case 'Completed':
         return 'bg-stone-800 border-stone-700 text-stone-300';
       case 'Cancelled':
@@ -74,7 +74,7 @@ export const AdminAppointments: React.FC = () => {
 
         <div className="flex items-center gap-2 text-xs font-semibold text-stone-400">
           <span className="bg-stone-900 border border-stone-800 px-3 py-1.5 rounded-xl">
-            Total Requests: <strong className="text-blue-400">{appointments.length}</strong>
+            Total Requests: <strong className="text-zinc-400">{appointments.length}</strong>
           </span>
         </div>
       </div>
@@ -91,7 +91,7 @@ export const AdminAppointments: React.FC = () => {
               className={`
                 px-3 py-1.5 rounded-lg text-xs font-bold transition-all whitespace-nowrap
                 ${statusFilter === st 
-                  ? 'bg-blue-500 text-stone-950 shadow-md' 
+                  ? 'bg-zinc-500 text-stone-950 shadow-md' 
                   : 'text-stone-400 hover:text-stone-100'
                 }
               `}
@@ -109,7 +109,7 @@ export const AdminAppointments: React.FC = () => {
             value={searchTerm}
             onChange={e => setSearchTerm(e.target.value)}
             placeholder="Search name or phone..."
-            className="w-full bg-stone-900 border border-stone-800 rounded-xl pl-10 pr-4 py-2 text-stone-100 text-xs focus:border-blue-500 focus:outline-none"
+            className="w-full bg-stone-900 border border-stone-800 rounded-xl pl-10 pr-4 py-2 text-stone-100 text-xs focus:border-zinc-500 focus:outline-none"
           />
         </div>
 
@@ -148,7 +148,7 @@ export const AdminAppointments: React.FC = () => {
                     </td>
 
                     <td className="py-4 px-4">
-                      <span className="text-blue-400 font-semibold">{apt.serviceName}</span>
+                      <span className="text-zinc-400 font-semibold">{apt.serviceName}</span>
                     </td>
 
                     <td className="py-4 px-4 text-stone-300">
@@ -185,7 +185,7 @@ export const AdminAppointments: React.FC = () => {
                         {apt.status === 'Confirmed' && (
                           <button
                             onClick={() => updateAppointmentStatus(apt.id, 'Completed')}
-                            className="p-1.5 rounded-lg bg-blue-950 text-blue-400 hover:bg-blue-900 border border-blue-500/40"
+                            className="p-1.5 rounded-lg bg-zinc-950 text-zinc-400 hover:bg-zinc-900 border border-zinc-500/40"
                             title="Mark Completed"
                           >
                             <CheckCheck className="w-4 h-4" />
@@ -216,7 +216,7 @@ export const AdminAppointments: React.FC = () => {
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-bold text-stone-100 text-sm">{apt.customerName}</h3>
-                    <p className="text-xs text-blue-400 font-mono mt-0.5">{apt.phone}</p>
+                    <p className="text-xs text-zinc-400 font-mono mt-0.5">{apt.phone}</p>
                   </div>
                   <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${getStatusBadgeClass(apt.status)}`}>
                     {apt.status}
@@ -230,7 +230,7 @@ export const AdminAppointments: React.FC = () => {
                   </div>
                   <div className="flex items-center justify-between text-stone-300">
                     <span className="text-stone-400">Date & Time:</span>
-                    <span className="font-medium text-blue-400">{apt.preferredDate} @ {apt.preferredTime}</span>
+                    <span className="font-medium text-zinc-400">{apt.preferredDate} @ {apt.preferredTime}</span>
                   </div>
                 </div>
 
@@ -266,7 +266,7 @@ export const AdminAppointments: React.FC = () => {
             
             <div className="flex items-center justify-between border-b border-stone-800 pb-4">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 block">Appointment ID: {selectedApt.id}</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 block">Appointment ID: {selectedApt.id}</span>
                 <h3 className="font-heading font-bold text-stone-100 text-xl mt-0.5">
                   Customer Booking Request
                 </h3>
@@ -291,7 +291,7 @@ export const AdminAppointments: React.FC = () => {
 
                 <div className="pt-2 border-t border-stone-800/80 space-y-1">
                   <div className="text-sm font-bold text-stone-100">{selectedApt.customerName}</div>
-                  <div className="text-blue-400 font-mono text-xs flex items-center gap-1.5">
+                  <div className="text-zinc-400 font-mono text-xs flex items-center gap-1.5">
                     <Phone className="w-3.5 h-3.5 text-stone-400" />
                     <span>{selectedApt.phone}</span>
                   </div>
@@ -307,7 +307,7 @@ export const AdminAppointments: React.FC = () => {
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-stone-950 p-3.5 rounded-xl border border-stone-800">
                   <span className="text-stone-400 uppercase text-[10px] font-bold block mb-1">Selected Service</span>
-                  <span className="text-blue-400 font-bold text-sm block">{selectedApt.serviceName}</span>
+                  <span className="text-zinc-400 font-bold text-sm block">{selectedApt.serviceName}</span>
                 </div>
 
                 <div className="bg-stone-950 p-3.5 rounded-xl border border-stone-800">
@@ -353,7 +353,7 @@ export const AdminAppointments: React.FC = () => {
                     updateAppointmentStatus(selectedApt.id, 'Completed');
                     setSelectedApt({ ...selectedApt, status: 'Completed' });
                   }}
-                  className="bg-stone-800 hover:bg-stone-700 text-blue-400 border border-blue-500/30 font-bold py-2.5 rounded-xl text-[11px] uppercase"
+                  className="bg-stone-800 hover:bg-stone-700 text-zinc-400 border border-zinc-500/30 font-bold py-2.5 rounded-xl text-[11px] uppercase"
                 >
                   Completed
                 </button>

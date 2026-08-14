@@ -62,7 +62,7 @@ export const AdminSettings: React.FC = () => {
         
         {/* Section 1: General Business Identity */}
         <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 space-y-4 shadow-xl">
-          <div className="flex items-center gap-2 text-blue-400 font-bold text-sm border-b border-stone-800 pb-3 uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-zinc-400 font-bold text-sm border-b border-stone-800 pb-3 uppercase tracking-wider">
             <Store className="w-4 h-4" />
             <span>General Business Profile</span>
           </div>
@@ -77,7 +77,7 @@ export const AdminSettings: React.FC = () => {
                 required
                 value={formData.salonName}
                 onChange={e => setFormData({ ...formData, salonName: e.target.value })}
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -89,7 +89,7 @@ export const AdminSettings: React.FC = () => {
                 type="text"
                 value={formData.tagline}
                 onChange={e => setFormData({ ...formData, tagline: e.target.value })}
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
               />
             </div>
           </div>
@@ -97,7 +97,7 @@ export const AdminSettings: React.FC = () => {
 
         {/* Section 2: Contact & Phone Numbers */}
         <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 space-y-4 shadow-xl">
-          <div className="flex items-center gap-2 text-blue-400 font-bold text-sm border-b border-stone-800 pb-3 uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-zinc-400 font-bold text-sm border-b border-stone-800 pb-3 uppercase tracking-wider">
             <Phone className="w-4 h-4" />
             <span>Contact & Communication</span>
           </div>
@@ -112,7 +112,7 @@ export const AdminSettings: React.FC = () => {
                 required
                 value={formData.phone}
                 onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 font-mono focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 font-mono focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -125,7 +125,7 @@ export const AdminSettings: React.FC = () => {
                 required
                 value={formData.whatsapp}
                 onChange={e => setFormData({ ...formData, whatsapp: e.target.value })}
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 font-mono focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 font-mono focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -139,7 +139,7 @@ export const AdminSettings: React.FC = () => {
                 value={formData.whatsappRaw}
                 onChange={e => setFormData({ ...formData, whatsappRaw: e.target.value })}
                 placeholder="971567179467"
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 font-mono focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 font-mono focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -152,7 +152,7 @@ export const AdminSettings: React.FC = () => {
                 required
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
               />
             </div>
           </div>
@@ -160,7 +160,7 @@ export const AdminSettings: React.FC = () => {
 
         {/* Section 3: Location & Opening Hours */}
         <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 space-y-4 shadow-xl">
-          <div className="flex items-center gap-2 text-blue-400 font-bold text-sm border-b border-stone-800 pb-3 uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-zinc-400 font-bold text-sm border-b border-stone-800 pb-3 uppercase tracking-wider">
             <Clock className="w-4 h-4" />
             <span>Opening Hours & Location</span>
           </div>
@@ -176,7 +176,7 @@ export const AdminSettings: React.FC = () => {
                 value={formData.workingHoursMonSat}
                 onChange={e => setFormData({ ...formData, workingHoursMonSat: e.target.value })}
                 placeholder="Every day: 10:00 AM – 12:00 AM"
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -189,7 +189,7 @@ export const AdminSettings: React.FC = () => {
                 required
                 value={formData.workingHoursSun}
                 onChange={e => setFormData({ ...formData, workingHoursSun: e.target.value })}
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -202,7 +202,7 @@ export const AdminSettings: React.FC = () => {
                 required
                 value={formData.address}
                 onChange={e => setFormData({ ...formData, address: e.target.value })}
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
               />
             </div>
 
@@ -215,7 +215,7 @@ export const AdminSettings: React.FC = () => {
                 required
                 value={formData.googleMapsUrl}
                 onChange={e => setFormData({ ...formData, googleMapsUrl: e.target.value })}
-                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 font-mono text-xs focus:border-blue-500 focus:outline-none"
+                className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 font-mono text-xs focus:border-zinc-500 focus:outline-none"
               />
             </div>
           </div>
@@ -223,7 +223,7 @@ export const AdminSettings: React.FC = () => {
 
         {/* Section 4: Notice Banner */}
         <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 space-y-4 shadow-xl">
-          <div className="flex items-center gap-2 text-blue-400 font-bold text-sm border-b border-stone-800 pb-3 uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-zinc-400 font-bold text-sm border-b border-stone-800 pb-3 uppercase tracking-wider">
             <Info className="w-4 h-4" />
             <span>Pricing Notice / Menu Disclaimer</span>
           </div>
@@ -233,7 +233,7 @@ export const AdminSettings: React.FC = () => {
               rows={2}
               value={formData.priceNotice}
               onChange={e => setFormData({ ...formData, priceNotice: e.target.value })}
-              className="w-full bg-stone-950 border border-stone-700 rounded-xl p-3 text-stone-100 focus:border-blue-500 focus:outline-none"
+              className="w-full bg-stone-950 border border-stone-700 rounded-xl p-3 text-stone-100 focus:border-zinc-500 focus:outline-none"
             />
           </div>
         </div>
@@ -242,7 +242,7 @@ export const AdminSettings: React.FC = () => {
         <div className="pt-2 flex justify-end">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-98"
+            className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-zinc-500/20 active:scale-98"
           >
             <Save className="w-4 h-4" />
             <span>Save All Salon Settings</span>

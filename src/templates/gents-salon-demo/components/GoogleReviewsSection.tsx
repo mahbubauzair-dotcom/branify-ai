@@ -15,11 +15,11 @@ export const GoogleReviewsSection: React.FC<GoogleReviewsSectionProps> = ({ conf
         <div className="bg-stone-950 rounded-3xl border border-stone-800 p-8 sm:p-12 text-center relative overflow-hidden shadow-2xl">
           
           {/* Subtle Ambient Background Accent Glow */}
-          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/10 blur-3xl rounded-full pointer-events-none" />
+          <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-zinc-500/10 blur-3xl rounded-full pointer-events-none" />
 
           {/* Header Label */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900 border border-stone-700/80 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-6">
-            <svg className="w-4 h-4 fill-current text-blue-400" viewBox="0 0 24 24">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900 border border-stone-700/80 text-zinc-400 text-xs font-semibold uppercase tracking-wider mb-6">
+            <svg className="w-4 h-4 fill-current text-zinc-400" viewBox="0 0 24 24">
               <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" />
             </svg>
             <span>Google Customer Reviews</span>
@@ -36,9 +36,9 @@ export const GoogleReviewsSection: React.FC<GoogleReviewsSectionProps> = ({ conf
 
           {/* Prominent Rating Card Box */}
           <div className="my-8 inline-flex flex-col sm:flex-row items-center justify-center gap-4 bg-stone-900/90 border border-stone-800 px-8 py-5 rounded-2xl shadow-inner">
-            <div className="flex items-center gap-1.5 text-blue-400">
+            <div className="flex items-center gap-1.5 text-zinc-400">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-7 h-7 fill-blue-400 text-blue-400" />
+                <Star key={i} className="w-7 h-7 fill-zinc-400 text-zinc-400" />
               ))}
             </div>
             
@@ -63,7 +63,7 @@ export const GoogleReviewsSection: React.FC<GoogleReviewsSectionProps> = ({ conf
                 href={config.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold text-sm sm:text-base uppercase tracking-wider transition-all transform hover:-translate-y-0.5 shadow-xl shadow-blue-500/20 active:translate-y-0"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold text-sm sm:text-base uppercase tracking-wider transition-all transform hover:-translate-y-0.5 shadow-xl shadow-zinc-500/20 active:translate-y-0"
               >
                 <span>View All Google Reviews</span>
                 <ExternalLink className="w-4 h-4 stroke-[2.5]" />
@@ -71,7 +71,7 @@ export const GoogleReviewsSection: React.FC<GoogleReviewsSectionProps> = ({ conf
             </div>
 
             <div className="pt-2 flex items-center justify-center gap-2 text-xs text-stone-400">
-              <MapPin className="w-4 h-4 text-blue-500" />
+              <MapPin className="w-4 h-4 text-zinc-500" />
               <span>Verified Google Business Listing • {config.locationArea}</span>
             </div>
           </div>

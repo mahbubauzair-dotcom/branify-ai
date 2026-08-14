@@ -27,7 +27,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ config, onOpenBooking 
       
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-3xl">
-        <span className="text-xs font-bold text-blue-400 tracking-widest uppercase block mb-2">
+        <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase block mb-2">
           Get In Touch
         </span>
         <h1 className="text-3xl sm:text-5xl font-extrabold font-display text-stone-100">
@@ -67,7 +67,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ config, onOpenBooking 
                     required
                     value={contactForm.name}
                     onChange={e => setContactForm({ ...contactForm, name: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                     placeholder="Full name"
                   />
                 </div>
@@ -79,7 +79,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ config, onOpenBooking 
                     required
                     value={contactForm.phone}
                     onChange={e => setContactForm({ ...contactForm, phone: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                     placeholder="+971 50 000 0000"
                   />
                 </div>
@@ -92,7 +92,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ config, onOpenBooking 
                   required
                   value={contactForm.email}
                   onChange={e => setContactForm({ ...contactForm, email: e.target.value })}
-                  className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none"
                   placeholder="client@example.ae"
                 />
               </div>
@@ -104,14 +104,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ config, onOpenBooking 
                   rows={4}
                   value={contactForm.message}
                   onChange={e => setContactForm({ ...contactForm, message: e.target.value })}
-                  className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-blue-500 focus:outline-none resize-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-lg px-3 py-2 text-stone-100 text-sm focus:border-zinc-500 focus:outline-none resize-none"
                   placeholder="How can we assist you today?"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-500 hover:bg-blue-400 text-stone-950 font-bold py-3 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+                className="w-full bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-bold py-3 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
               >
                 <Send className="w-4 h-4" />
                 <span>Send Inquiry</span>

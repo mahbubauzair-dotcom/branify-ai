@@ -15,7 +15,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ config, onOpenBo
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-blue-400 tracking-widest uppercase mb-2 block">
+          <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase mb-2 block">
             Transparent Tiered Pricing
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-stone-100 tracking-tight">
@@ -35,7 +35,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ config, onOpenBo
                 key={tier.id}
                 className={`relative rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 ${
                   isClassic
-                    ? 'bg-stone-900 border-2 border-blue-500 shadow-2xl shadow-blue-950/40 lg:-translate-y-2'
+                    ? 'bg-stone-900 border-2 border-zinc-500 shadow-2xl shadow-zinc-950/40 lg:-translate-y-2'
                     : 'bg-stone-900/60 border border-stone-800 hover:border-stone-700'
                 }`}
               >
@@ -53,7 +53,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ config, onOpenBo
                     <h3 className="font-display text-xl font-bold text-stone-100 uppercase tracking-wider">
                       {tier.title}
                     </h3>
-                    <p className="text-xs text-blue-400 font-medium tracking-wide">
+                    <p className="text-xs text-zinc-400 font-medium tracking-wide">
                       {tier.subtitle}
                     </p>
                   </div>
@@ -77,7 +77,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ config, onOpenBo
 
                   {/* Audience Badge */}
                   <div className="mb-6 p-3 bg-stone-950/80 rounded-xl border border-stone-800/80 text-[11px] text-stone-300">
-                    <span className="font-semibold text-blue-400 block mb-0.5">Recommended For:</span>
+                    <span className="font-semibold text-zinc-400 block mb-0.5">Recommended For:</span>
                     {tier.targetAudience}
                   </div>
 
@@ -88,7 +88,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ config, onOpenBo
                     </span>
                     {tier.features.map((feature, idx) => (
                       <div key={idx} className="flex items-start gap-2.5 text-xs text-stone-300">
-                        <div className="w-4 h-4 rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center shrink-0 mt-0.5 text-blue-400">
+                        <div className="w-4 h-4 rounded-full bg-zinc-500/10 border border-zinc-500/30 flex items-center justify-center shrink-0 mt-0.5 text-zinc-400">
                           <Check className="w-2.5 h-2.5" />
                         </div>
                         <span>{feature}</span>
@@ -102,8 +102,8 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ config, onOpenBo
                   onClick={() => onOpenBooking(tier.id)}
                   className={`w-full py-3.5 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
                     isClassic
-                      ? 'bg-bronze-gradient text-stone-950 hover:brightness-110 shadow-lg shadow-blue-900/30'
-                      : 'bg-stone-800 hover:bg-stone-700 text-stone-100 border border-stone-700 hover:border-blue-500/40'
+                      ? 'bg-bronze-gradient text-stone-950 hover:brightness-110 shadow-lg shadow-zinc-900/30'
+                      : 'bg-stone-800 hover:bg-stone-700 text-stone-100 border border-stone-700 hover:border-zinc-500/40'
                   }`}
                 >
                   <Calendar className="w-4 h-4" />

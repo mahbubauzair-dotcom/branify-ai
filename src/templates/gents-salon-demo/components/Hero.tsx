@@ -29,8 +29,8 @@ export const Hero: React.FC<HeroProps> = ({ config, onNavigate, onOpenBooking })
         <div className="max-w-3xl space-y-6">
           
           {/* Eyebrow badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900/90 border border-blue-500/30 text-blue-400 text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
-            <MapPin className="w-3.5 h-3.5 text-blue-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-stone-900/90 border border-zinc-500/30 text-zinc-400 text-xs font-semibold tracking-wider uppercase backdrop-blur-md">
+            <MapPin className="w-3.5 h-3.5 text-zinc-400" />
             <span>International City Phase 2 / Warsan 4, Dubai</span>
           </div>
 
@@ -54,7 +54,7 @@ export const Hero: React.FC<HeroProps> = ({ config, onNavigate, onOpenBooking })
           <div className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4">
             <button
               onClick={onOpenBooking}
-              className="bg-bronze-gradient text-stone-950 font-bold px-6 py-3.5 rounded-xl text-sm uppercase tracking-wider shadow-xl shadow-blue-900/20 hover:brightness-110 active:scale-95 transition-all flex items-center gap-2"
+              className="bg-bronze-gradient text-stone-950 font-bold px-6 py-3.5 rounded-xl text-sm uppercase tracking-wider shadow-xl shadow-zinc-900/20 hover:brightness-110 active:scale-95 transition-all flex items-center gap-2"
             >
               <Calendar className="w-4 h-4" />
               <span>BOOK APPOINTMENT</span>
@@ -74,9 +74,9 @@ export const Hero: React.FC<HeroProps> = ({ config, onNavigate, onOpenBooking })
               href={config.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-stone-900/90 hover:bg-stone-800 text-stone-100 font-semibold px-5 py-3.5 rounded-xl text-sm uppercase tracking-wider border border-stone-700 hover:border-blue-500/50 backdrop-blur-md transition-all flex items-center gap-2"
+              className="bg-stone-900/90 hover:bg-stone-800 text-stone-100 font-semibold px-5 py-3.5 rounded-xl text-sm uppercase tracking-wider border border-stone-700 hover:border-zinc-500/50 backdrop-blur-md transition-all flex items-center gap-2"
             >
-              <MapPin className="w-4 h-4 text-blue-400" />
+              <MapPin className="w-4 h-4 text-zinc-400" />
               <span>GET DIRECTIONS</span>
               <ExternalLink className="w-3.5 h-3.5 text-stone-400" />
             </a>
@@ -84,8 +84,8 @@ export const Hero: React.FC<HeroProps> = ({ config, onNavigate, onOpenBooking })
 
           {/* Quick Info Bar */}
           <div className="pt-4 flex flex-wrap items-center gap-4 text-xs text-stone-300 border-t border-stone-800/80">
-            <div className="flex items-center gap-1.5 text-blue-400 font-semibold">
-              <Star className="w-4 h-4 fill-blue-400" />
+            <div className="flex items-center gap-1.5 text-zinc-400 font-semibold">
+              <Star className="w-4 h-4 fill-zinc-400" />
               <span>{config.googleRating} / 5</span>
               <span className="text-stone-400 font-normal">({config.googleReviewCount} Google Reviews)</span>
             </div>

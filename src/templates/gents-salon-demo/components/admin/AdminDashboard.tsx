@@ -54,7 +54,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
       case 'Confirmed':
         return 'bg-emerald-950/80 border-emerald-500/40 text-emerald-400';
       case 'Pending':
-        return 'bg-blue-950/80 border-blue-500/40 text-blue-400';
+        return 'bg-zinc-950/80 border-zinc-500/40 text-zinc-400';
       case 'Completed':
         return 'bg-stone-800 border-stone-700 text-stone-300';
       case 'Cancelled':
@@ -78,8 +78,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
           </p>
         </div>
 
-        <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-900 border border-stone-800 text-xs text-blue-400 font-semibold self-start sm:self-auto">
-          <Calendar className="w-4 h-4 text-blue-400" />
+        <div className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-900 border border-stone-800 text-xs text-zinc-400 font-semibold self-start sm:self-auto">
+          <Calendar className="w-4 h-4 text-zinc-400" />
           <span>{formattedTodayDate}</span>
         </div>
       </div>
@@ -90,11 +90,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
         {/* Card 1: Today's Appointments */}
         <div 
           onClick={() => onNavigate('/template/gents-salon-demo/admin/appointments')}
-          className="bg-stone-900 rounded-2xl border border-stone-800 p-5 hover:border-blue-500/40 transition-all cursor-pointer group shadow-lg"
+          className="bg-stone-900 rounded-2xl border border-stone-800 p-5 hover:border-zinc-500/40 transition-all cursor-pointer group shadow-lg"
         >
           <div className="flex items-center justify-between text-stone-400 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-stone-300">Today's Appointments</span>
-            <div className="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <div className="w-9 h-9 rounded-xl bg-zinc-500/10 text-zinc-400 flex items-center justify-center group-hover:scale-110 transition-transform">
               <Calendar className="w-4 h-4" />
             </div>
           </div>
@@ -109,15 +109,15 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
         {/* Card 2: Pending Requests */}
         <div 
           onClick={() => onNavigate('/template/gents-salon-demo/admin/appointments')}
-          className="bg-stone-900 rounded-2xl border border-stone-800 p-5 hover:border-blue-500/40 transition-all cursor-pointer group shadow-lg"
+          className="bg-stone-900 rounded-2xl border border-stone-800 p-5 hover:border-zinc-500/40 transition-all cursor-pointer group shadow-lg"
         >
           <div className="flex items-center justify-between text-stone-400 mb-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-blue-400">Pending Requests</span>
-            <div className="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">Pending Requests</span>
+            <div className="w-9 h-9 rounded-xl bg-zinc-500/20 text-zinc-400 flex items-center justify-center group-hover:scale-110 transition-transform">
               <Clock className="w-4 h-4" />
             </div>
           </div>
-          <div className="text-3xl font-black text-blue-400 font-display">
+          <div className="text-3xl font-black text-zinc-400 font-display">
             {pendingRequestsCount}
           </div>
           <p className="text-[11px] text-stone-400 mt-1">
@@ -128,12 +128,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
         {/* Card 3: Active Services */}
         <div 
           onClick={() => onNavigate('/template/gents-salon-demo/admin/services')}
-          className="bg-stone-900 rounded-2xl border border-stone-800 p-5 hover:border-blue-500/40 transition-all cursor-pointer group shadow-lg"
+          className="bg-stone-900 rounded-2xl border border-stone-800 p-5 hover:border-zinc-500/40 transition-all cursor-pointer group shadow-lg"
         >
           <div className="flex items-center justify-between text-stone-400 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-stone-300">Active Services</span>
             <div className="w-9 h-9 rounded-xl bg-stone-800 text-stone-300 flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Scissors className="w-4 h-4 text-blue-400" />
+              <Scissors className="w-4 h-4 text-zinc-400" />
             </div>
           </div>
           <div className="text-3xl font-black text-stone-100 font-display">
@@ -147,7 +147,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
         {/* Card 4: Active Offers */}
         <div 
           onClick={() => onNavigate('/template/gents-salon-demo/admin/offers')}
-          className="bg-stone-900 rounded-2xl border border-stone-800 p-5 hover:border-blue-500/40 transition-all cursor-pointer group shadow-lg"
+          className="bg-stone-900 rounded-2xl border border-stone-800 p-5 hover:border-zinc-500/40 transition-all cursor-pointer group shadow-lg"
         >
           <div className="flex items-center justify-between text-stone-400 mb-3">
             <span className="text-xs font-bold uppercase tracking-wider text-stone-300">Active Offers</span>
@@ -174,7 +174,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <button
             onClick={() => onNavigate('/template/gents-salon-demo/admin/services')}
-            className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-bold p-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md"
+            className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-bold p-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md"
           >
             <Plus className="w-4 h-4 stroke-[3]" />
             <span>Add Service</span>
@@ -192,7 +192,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
             onClick={() => onNavigate('/template/gents-salon-demo/admin/gallery')}
             className="bg-stone-800 hover:bg-stone-700 text-stone-100 font-bold p-3.5 rounded-xl text-xs uppercase tracking-wider border border-stone-700 flex items-center justify-center gap-2 transition-all"
           >
-            <ImageIcon className="w-4 h-4 text-blue-400" />
+            <ImageIcon className="w-4 h-4 text-zinc-400" />
             <span>Add Photo</span>
           </button>
 
@@ -223,7 +223,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
 
           <button
             onClick={() => onNavigate('/template/gents-salon-demo/admin/appointments')}
-            className="text-xs text-blue-400 hover:underline font-bold flex items-center gap-1"
+            className="text-xs text-zinc-400 hover:underline font-bold flex items-center gap-1"
           >
             <span>Manage All</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -252,7 +252,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
                   <td className="py-3.5 px-3 text-stone-300 font-mono text-[11px]">
                     {apt.phone}
                   </td>
-                  <td className="py-3.5 px-3 text-blue-400 font-medium">
+                  <td className="py-3.5 px-3 text-zinc-400 font-medium">
                     {apt.serviceName}
                   </td>
                   <td className="py-3.5 px-3 text-stone-300 font-medium">
@@ -320,7 +320,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onNavigate }) =>
               <div className="bg-stone-950 p-3.5 rounded-xl border border-stone-800 space-y-1">
                 <span className="text-stone-400 uppercase text-[10px] font-bold">Customer Name</span>
                 <p className="text-stone-100 font-bold text-sm">{selectedApt.customerName}</p>
-                <p className="text-blue-400 font-mono text-xs">{selectedApt.phone}</p>
+                <p className="text-zinc-400 font-mono text-xs">{selectedApt.phone}</p>
                 {selectedApt.email && <p className="text-stone-400 text-xs">{selectedApt.email}</p>}
               </div>
 

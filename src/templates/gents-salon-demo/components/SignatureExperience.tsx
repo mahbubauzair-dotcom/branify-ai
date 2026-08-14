@@ -41,7 +41,7 @@ export const SignatureExperience: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-blue-400 tracking-widest uppercase mb-2 block">
+          <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase mb-2 block">
             Our Standard Protocol
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-stone-100">
@@ -59,14 +59,14 @@ export const SignatureExperience: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-stone-950 p-6 rounded-2xl border border-stone-800 hover:border-blue-500/40 transition-all flex flex-col justify-between relative group"
+                className="bg-stone-950 p-6 rounded-2xl border border-stone-800 hover:border-zinc-500/40 transition-all flex flex-col justify-between relative group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-2xl font-black font-display text-blue-500/40 group-hover:text-blue-400 transition-colors">
+                    <span className="text-2xl font-black font-display text-zinc-500/40 group-hover:text-zinc-400 transition-colors">
                       {step.number}
                     </span>
-                    <div className="w-10 h-10 rounded-xl bg-stone-900 border border-stone-800 flex items-center justify-center text-blue-400">
+                    <div className="w-10 h-10 rounded-xl bg-stone-900 border border-stone-800 flex items-center justify-center text-zinc-400">
                       <IconComp className="w-5 h-5" />
                     </div>
                   </div>

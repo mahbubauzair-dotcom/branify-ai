@@ -40,7 +40,7 @@ export const WhyChooseUs: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="text-xs font-bold text-blue-400 tracking-widest uppercase mb-2 block">
+          <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase mb-2 block">
             Dubai Salon Excellence
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-stone-100">
@@ -57,9 +57,9 @@ export const WhyChooseUs: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-stone-900/60 p-6 rounded-2xl border border-stone-800/80 hover:border-blue-500/40 transition-all group"
+                className="bg-stone-900/60 p-6 rounded-2xl border border-stone-800/80 hover:border-zinc-500/40 transition-all group"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4 group-hover:bg-blue-500/20 transition-all">
+                <div className="w-12 h-12 rounded-xl bg-zinc-500/10 border border-zinc-500/20 flex items-center justify-center text-zinc-400 mb-4 group-hover:bg-zinc-500/20 transition-all">
                   <IconComponent className="w-6 h-6" />
                 </div>
                 <h3 className="font-heading font-bold text-stone-100 text-lg mb-2">

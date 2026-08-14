@@ -46,9 +46,9 @@ export const TrustValueSection: React.FC = () => {
             return (
               <div
                 key={index}
-                className="bg-stone-950 p-6 rounded-2xl border border-stone-800 hover:border-blue-500/40 transition-all group"
+                className="bg-stone-950 p-6 rounded-2xl border border-stone-800 hover:border-zinc-500/40 transition-all group"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 group-hover:bg-blue-500/20 transition-all">
+                <div className="w-12 h-12 rounded-xl bg-zinc-500/10 border border-zinc-500/20 flex items-center justify-center text-zinc-400 mb-4 group-hover:scale-110 group-hover:bg-zinc-500/20 transition-all">
                   <IconComponent className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-bold font-heading text-stone-100 mb-2">

@@ -42,7 +42,7 @@ export const EverydayGroomingSection: React.FC<EverydayGroomingSectionProps> = (
 
           <button
             onClick={() => onNavigate('services')}
-            className="text-blue-400 hover:text-blue-300 text-sm font-semibold flex items-center gap-1.5 shrink-0 hover:underline"
+            className="text-zinc-400 hover:text-zinc-300 text-sm font-semibold flex items-center gap-1.5 shrink-0 hover:underline"
           >
             <span>View All Everyday Services</span>
             <ArrowRight className="w-4 h-4" />
@@ -54,7 +54,7 @@ export const EverydayGroomingSection: React.FC<EverydayGroomingSectionProps> = (
           {everydayServices.map((service) => (
             <div
               key={service.id}
-              className="bg-stone-950 rounded-2xl border border-stone-800 p-5 flex flex-col justify-between hover:border-blue-500/40 transition-all group"
+              className="bg-stone-950 rounded-2xl border border-stone-800 p-5 flex flex-col justify-between hover:border-zinc-500/40 transition-all group"
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
@@ -66,7 +66,7 @@ export const EverydayGroomingSection: React.FC<EverydayGroomingSectionProps> = (
                   </span>
                 </div>
 
-                <h3 className="font-heading font-bold text-stone-100 text-base group-hover:text-blue-400 transition-colors mb-2">
+                <h3 className="font-heading font-bold text-stone-100 text-base group-hover:text-zinc-400 transition-colors mb-2">
                   {service.name}
                 </h3>
 
@@ -84,7 +84,7 @@ export const EverydayGroomingSection: React.FC<EverydayGroomingSectionProps> = (
                 </button>
                 <button
                   onClick={() => onOpenBooking(service.id)}
-                  className="bg-blue-500 hover:bg-blue-400 text-stone-950 text-xs py-2 px-3 rounded-lg font-bold flex items-center gap-1 transition-colors"
+                  className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 text-xs py-2 px-3 rounded-lg font-bold flex items-center gap-1 transition-colors"
                 >
                   <Calendar className="w-3.5 h-3.5" />
                   <span>Book</span>

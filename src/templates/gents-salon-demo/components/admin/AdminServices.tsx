@@ -139,7 +139,7 @@ export const AdminServices: React.FC = () => {
 
         <button
           onClick={handleOpenAdd}
-          className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-98 self-start sm:self-auto"
+          className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-zinc-500/20 active:scale-98 self-start sm:self-auto"
         >
           <Plus className="w-4 h-4 stroke-[3]" />
           <span>+ Add Service</span>
@@ -160,7 +160,7 @@ export const AdminServices: React.FC = () => {
           <span className="text-xs font-bold text-stone-300 uppercase tracking-wider">
             All Services ({services.length})
           </span>
-          <span className="text-[11px] text-blue-400 font-mono">
+          <span className="text-[11px] text-zinc-400 font-mono">
             Currency: {config.currency}
           </span>
         </div>
@@ -190,7 +190,7 @@ export const AdminServices: React.FC = () => {
                       <div>
                         <span className="font-bold text-stone-100 block">{srv.name}</span>
                         {srv.popular && (
-                          <span className="text-[10px] font-bold text-blue-400 bg-blue-500/10 px-2 py-0.5 rounded-full inline-block mt-0.5">
+                          <span className="text-[10px] font-bold text-zinc-400 bg-zinc-500/10 px-2 py-0.5 rounded-full inline-block mt-0.5">
                             Popular
                           </span>
                         )}
@@ -206,7 +206,7 @@ export const AdminServices: React.FC = () => {
                     {srv.duration}
                   </td>
 
-                  <td className="py-4 px-4 font-bold text-blue-400 text-sm font-mono">
+                  <td className="py-4 px-4 font-bold text-zinc-400 text-sm font-mono">
                     {srv.startingPrice > 0 ? `${config.currency} ${srv.startingPrice}` : 'Price on request'}
                   </td>
 
@@ -230,7 +230,7 @@ export const AdminServices: React.FC = () => {
                         onClick={() => handleOpenEdit(srv)}
                         className="px-3 py-1.5 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-100 border border-stone-700 font-bold text-xs flex items-center gap-1.5"
                       >
-                        <Edit2 className="w-3.5 h-3.5 text-blue-400" />
+                        <Edit2 className="w-3.5 h-3.5 text-zinc-400" />
                         <span>Edit Price</span>
                       </button>
 
@@ -278,7 +278,7 @@ export const AdminServices: React.FC = () => {
                   value={formData.name}
                   onChange={e => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Men's Fade Haircut"
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                 />
               </div>
 
@@ -290,7 +290,7 @@ export const AdminServices: React.FC = () => {
                   <select
                     value={formData.category}
                     onChange={e => setFormData({ ...formData, category: e.target.value as ServiceCategory })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                   >
                     <option value="haircuts">Haircuts</option>
                     <option value="beard">Beard</option>
@@ -309,7 +309,7 @@ export const AdminServices: React.FC = () => {
                     value={formData.duration}
                     onChange={e => setFormData({ ...formData, duration: e.target.value })}
                     placeholder="e.g. 25 min"
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -324,7 +324,7 @@ export const AdminServices: React.FC = () => {
                     min="0"
                     value={formData.startingPrice}
                     onChange={e => setFormData({ ...formData, startingPrice: Number(e.target.value) })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-blue-400 font-bold font-mono text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-zinc-400 font-bold font-mono text-sm focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
 
@@ -335,7 +335,7 @@ export const AdminServices: React.FC = () => {
                   <select
                     value={formData.tier}
                     onChange={e => setFormData({ ...formData, tier: e.target.value as ServiceTier })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                   >
                     <option value="essential">Essential</option>
                     <option value="classic">Classic</option>
@@ -353,7 +353,7 @@ export const AdminServices: React.FC = () => {
                   value={formData.description}
                   onChange={e => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Short service description for customers..."
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                 />
               </div>
 
@@ -363,7 +363,7 @@ export const AdminServices: React.FC = () => {
                   type="checkbox"
                   checked={formData.isActive}
                   onChange={e => setFormData({ ...formData, isActive: e.target.checked })}
-                  className="w-4 h-4 accent-blue-500 rounded"
+                  className="w-4 h-4 accent-zinc-500 rounded"
                 />
               </div>
 
@@ -377,7 +377,7 @@ export const AdminServices: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold py-3 rounded-xl uppercase text-xs shadow-lg shadow-blue-500/20"
+                  className="flex-1 bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold py-3 rounded-xl uppercase text-xs shadow-lg shadow-zinc-500/20"
                 >
                   Save Service
                 </button>

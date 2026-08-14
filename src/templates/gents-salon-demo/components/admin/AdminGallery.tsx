@@ -115,7 +115,7 @@ export const AdminGallery: React.FC = () => {
 
         <button
           onClick={handleOpenAdd}
-          className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-98 self-start sm:self-auto"
+          className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-zinc-500/20 active:scale-98 self-start sm:self-auto"
         >
           <Plus className="w-4 h-4 stroke-[3]" />
           <span>+ Add Photo</span>
@@ -146,7 +146,7 @@ export const AdminGallery: React.FC = () => {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
 
-                <span className="absolute top-2 left-2 px-2.5 py-1 rounded-full bg-stone-950/90 text-blue-400 text-[10px] font-bold uppercase tracking-wider border border-blue-500/20 backdrop-blur-md">
+                <span className="absolute top-2 left-2 px-2.5 py-1 rounded-full bg-stone-950/90 text-zinc-400 text-[10px] font-bold uppercase tracking-wider border border-zinc-500/20 backdrop-blur-md">
                   {item.category}
                 </span>
 
@@ -219,7 +219,7 @@ export const AdminGallery: React.FC = () => {
                   value={formData.title}
                   onChange={e => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. Sharp Fade Cut & Edging"
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                 />
               </div>
 
@@ -230,7 +230,7 @@ export const AdminGallery: React.FC = () => {
                 <select
                   value={formData.category}
                   onChange={e => setFormData({ ...formData, category: e.target.value as any })}
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                 >
                   <option value="haircuts">Haircuts</option>
                   <option value="beard">Beard</option>
@@ -244,7 +244,7 @@ export const AdminGallery: React.FC = () => {
                   Image Upload (Supabase Storage)
                 </label>
                 <div className="flex items-center gap-2 mb-2">
-                  <label className="flex-1 cursor-pointer bg-stone-950 hover:bg-stone-800 border border-stone-700 border-dashed rounded-xl px-3.5 py-2.5 text-center text-blue-400 font-bold flex items-center justify-center gap-2 transition-colors">
+                  <label className="flex-1 cursor-pointer bg-stone-950 hover:bg-stone-800 border border-stone-700 border-dashed rounded-xl px-3.5 py-2.5 text-center text-zinc-400 font-bold flex items-center justify-center gap-2 transition-colors">
                     <Upload className="w-4 h-4" />
                     <span>{isUploading ? 'Uploading to Supabase...' : 'Upload Image File'}</span>
                     <input 
@@ -266,7 +266,7 @@ export const AdminGallery: React.FC = () => {
                   value={formData.image}
                   onChange={e => setFormData({ ...formData, image: e.target.value })}
                   placeholder="https://..."
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none font-mono text-[11px]"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none font-mono text-[11px]"
                 />
               </div>
 
@@ -279,7 +279,7 @@ export const AdminGallery: React.FC = () => {
                   value={formData.description}
                   onChange={e => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Photo caption for public gallery..."
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                 />
               </div>
 
@@ -289,7 +289,7 @@ export const AdminGallery: React.FC = () => {
                   type="checkbox"
                   checked={formData.isActive}
                   onChange={e => setFormData({ ...formData, isActive: e.target.checked })}
-                  className="w-4 h-4 accent-blue-500 rounded"
+                  className="w-4 h-4 accent-zinc-500 rounded"
                 />
               </div>
 
@@ -303,7 +303,7 @@ export const AdminGallery: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold py-3 rounded-xl uppercase text-xs shadow-lg shadow-blue-500/20"
+                  className="flex-1 bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold py-3 rounded-xl uppercase text-xs shadow-lg shadow-zinc-500/20"
                 >
                   Save Photo
                 </button>

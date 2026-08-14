@@ -60,12 +60,12 @@ export const AdminReviews: React.FC = () => {
       )}
 
       {/* Live Preview Card */}
-      <div className="bg-gradient-to-r from-stone-900 to-stone-950 border border-blue-500/30 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 blur-3xl pointer-events-none" />
+      <div className="bg-gradient-to-r from-stone-900 to-stone-950 border border-zinc-500/30 rounded-3xl p-6 shadow-2xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-48 h-48 bg-zinc-500/10 blur-3xl pointer-events-none" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 relative z-10">
           <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-500/10 border border-zinc-500/20 text-zinc-400 text-xs font-bold uppercase tracking-wider">
               <Award className="w-3.5 h-3.5" />
               <span>Official Google Business Rating</span>
             </div>
@@ -78,14 +78,14 @@ export const AdminReviews: React.FC = () => {
                 {[1, 2, 3, 4, 5].map((s) => (
                   <Star 
                     key={s} 
-                    className={`w-5 h-5 ${s <= Math.floor(rating) ? 'text-blue-400 fill-blue-400' : s <= rating ? 'text-blue-400 fill-blue-400/50' : 'text-stone-700'}`} 
+                    className={`w-5 h-5 ${s <= Math.floor(rating) ? 'text-zinc-400 fill-zinc-400' : s <= rating ? 'text-zinc-400 fill-zinc-400/50' : 'text-stone-700'}`} 
                   />
                 ))}
               </div>
             </div>
 
             <p className="text-stone-300 text-xs">
-              Based on <strong className="text-blue-400 font-bold">{reviewCount} verified Google reviews</strong> for {config.salonName} in Dubai.
+              Based on <strong className="text-zinc-400 font-bold">{reviewCount} verified Google reviews</strong> for {config.salonName} in Dubai.
             </p>
           </div>
 
@@ -93,7 +93,7 @@ export const AdminReviews: React.FC = () => {
             href={mapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 transition-all shrink-0"
+            className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold px-6 py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-zinc-500/20 transition-all shrink-0"
           >
             <MapPin className="w-4 h-4" />
             <span>View All Google Reviews</span>
@@ -121,7 +121,7 @@ export const AdminReviews: React.FC = () => {
               required
               value={rating}
               onChange={e => setRating(Number(e.target.value))}
-              className="w-full bg-stone-950 border border-stone-700 rounded-xl px-4 py-3 text-stone-100 text-sm font-bold font-mono focus:border-blue-500 focus:outline-none"
+              className="w-full bg-stone-950 border border-stone-700 rounded-xl px-4 py-3 text-stone-100 text-sm font-bold font-mono focus:border-zinc-500 focus:outline-none"
             />
           </div>
 
@@ -135,7 +135,7 @@ export const AdminReviews: React.FC = () => {
               required
               value={reviewCount}
               onChange={e => setReviewCount(Number(e.target.value))}
-              className="w-full bg-stone-950 border border-stone-700 rounded-xl px-4 py-3 text-stone-100 text-sm font-bold font-mono focus:border-blue-500 focus:outline-none"
+              className="w-full bg-stone-950 border border-stone-700 rounded-xl px-4 py-3 text-stone-100 text-sm font-bold font-mono focus:border-zinc-500 focus:outline-none"
             />
           </div>
         </div>
@@ -149,14 +149,14 @@ export const AdminReviews: React.FC = () => {
             required
             value={mapsUrl}
             onChange={e => setMapsUrl(e.target.value)}
-            className="w-full bg-stone-950 border border-stone-700 rounded-xl px-4 py-3 text-stone-100 text-xs font-mono focus:border-blue-500 focus:outline-none"
+            className="w-full bg-stone-950 border border-stone-700 rounded-xl px-4 py-3 text-stone-100 text-xs font-mono focus:border-zinc-500 focus:outline-none"
           />
         </div>
 
         <div className="pt-2 flex justify-end">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold px-6 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-98"
+            className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold px-6 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-zinc-500/20 active:scale-98"
           >
             <Save className="w-4 h-4" />
             <span>Save Review Settings</span>
@@ -167,7 +167,7 @@ export const AdminReviews: React.FC = () => {
       {/* Customer Reviews Approval Table / Cards */}
       <div className="bg-stone-900 border border-stone-800 rounded-2xl p-6 space-y-4 shadow-xl">
         <div className="flex items-center justify-between border-b border-stone-800 pb-3">
-          <div className="flex items-center gap-2 text-blue-400 font-bold text-sm uppercase tracking-wider">
+          <div className="flex items-center gap-2 text-zinc-400 font-bold text-sm uppercase tracking-wider">
             <MessageSquare className="w-4 h-4" />
             <span>Customer Testimonials & Reviews ({reviews.length})</span>
           </div>
@@ -185,10 +185,10 @@ export const AdminReviews: React.FC = () => {
                   <div className="space-y-1">
                     <div className="flex items-center gap-2">
                       <span className="font-bold text-stone-100 text-xs">{rev.clientName}</span>
-                      <span className="text-[10px] text-blue-400 px-2 py-0.5 rounded bg-blue-500/10 font-bold uppercase">{rev.clientType}</span>
-                      <div className="flex items-center gap-0.5 text-blue-400">
+                      <span className="text-[10px] text-zinc-400 px-2 py-0.5 rounded bg-zinc-500/10 font-bold uppercase">{rev.clientType}</span>
+                      <div className="flex items-center gap-0.5 text-zinc-400">
                         {[...Array(rev.rating)].map((_, i) => (
-                          <Star key={i} className="w-3 h-3 fill-blue-400" />
+                          <Star key={i} className="w-3 h-3 fill-zinc-400" />
                         ))}
                       </div>
                     </div>
@@ -200,7 +200,7 @@ export const AdminReviews: React.FC = () => {
                     <button
                       onClick={() => handleToggleApproval(rev.id, rev.clientName, isApproved)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase flex items-center gap-1 transition-colors ${
-                        isApproved ? 'bg-emerald-950 text-emerald-400 border border-emerald-500/30' : 'bg-blue-950 text-blue-400 border border-blue-500/30'
+                        isApproved ? 'bg-emerald-950 text-emerald-400 border border-emerald-500/30' : 'bg-zinc-950 text-zinc-400 border border-zinc-500/30'
                       }`}
                     >
                       {isApproved ? (

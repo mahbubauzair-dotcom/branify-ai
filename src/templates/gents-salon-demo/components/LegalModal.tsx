@@ -26,7 +26,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose, config })
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-stone-800">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400">
+            <div className="w-8 h-8 rounded-lg bg-zinc-500/10 border border-zinc-500/30 flex items-center justify-center text-zinc-400">
               <FileText className="w-4 h-4" />
             </div>
             <h3 className="font-heading font-bold text-stone-100 text-lg">
@@ -44,7 +44,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose, config })
 
         {/* Legal Document Content */}
         <div className="py-4 space-y-4 text-xs text-stone-300 overflow-y-auto flex-1 leading-relaxed">
-          <div className="p-3 bg-stone-950 rounded-xl border border-stone-800 text-[11px] text-blue-400/90 flex items-center gap-2">
+          <div className="p-3 bg-stone-950 rounded-xl border border-stone-800 text-[11px] text-zinc-400/90 flex items-center gap-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>Master Template Legal Notice: The contents below serve as a structured draft for {config.salonName}.</span>
           </div>
@@ -108,7 +108,7 @@ export const LegalModal: React.FC<LegalModalProps> = ({ type, onClose, config })
         <div className="pt-4 border-t border-stone-800 flex justify-end">
           <button
             onClick={onClose}
-            className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-bold px-5 py-2 rounded-xl text-xs uppercase"
+            className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-bold px-5 py-2 rounded-xl text-xs uppercase"
           >
             I Understand
           </button>

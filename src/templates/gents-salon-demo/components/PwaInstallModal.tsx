@@ -36,7 +36,7 @@ export const PwaInstallModal: React.FC<PwaInstallModalProps> = ({
         </button>
 
         {/* Icon Header */}
-        <div className="w-14 h-14 rounded-2xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-4 shadow-lg">
+        <div className="w-14 h-14 rounded-2xl bg-zinc-500/10 border border-zinc-500/30 flex items-center justify-center text-zinc-400 mb-4 shadow-lg">
           <Smartphone className="w-7 h-7" />
         </div>
 
@@ -60,37 +60,37 @@ export const PwaInstallModal: React.FC<PwaInstallModalProps> = ({
           /* iOS Step-by-Step Instructions */
           <div className="space-y-4 text-left">
             <div className="p-3 bg-stone-950 rounded-xl border border-stone-800 space-y-2.5 text-xs text-stone-300">
-              <span className="font-bold text-blue-400 block border-b border-stone-800 pb-1">
+              <span className="font-bold text-zinc-400 block border-b border-stone-800 pb-1">
                 Safari iOS Installation Instructions:
               </span>
 
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-stone-800 flex items-center justify-center font-bold text-blue-400 text-[11px] shrink-0">
+                <div className="w-6 h-6 rounded-full bg-stone-800 flex items-center justify-center font-bold text-zinc-400 text-[11px] shrink-0">
                   1
                 </div>
                 <div className="flex items-center gap-2">
                   <span>Tap the</span>
                   <span className="inline-flex items-center gap-1 bg-stone-800 px-2 py-0.5 rounded text-stone-200 font-semibold">
-                    <Share className="w-3.5 h-3.5 text-blue-400" /> Share
+                    <Share className="w-3.5 h-3.5 text-zinc-400" /> Share
                   </span>
                   <span>icon below</span>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-stone-800 flex items-center justify-center font-bold text-blue-400 text-[11px] shrink-0">
+                <div className="w-6 h-6 rounded-full bg-stone-800 flex items-center justify-center font-bold text-zinc-400 text-[11px] shrink-0">
                   2
                 </div>
                 <div className="flex items-center gap-2">
                   <span>Scroll down & select</span>
                   <span className="inline-flex items-center gap-1 bg-stone-800 px-2 py-0.5 rounded text-stone-200 font-semibold">
-                    <PlusSquare className="w-3.5 h-3.5 text-blue-400" /> Add to Home Screen
+                    <PlusSquare className="w-3.5 h-3.5 text-zinc-400" /> Add to Home Screen
                   </span>
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-stone-800 flex items-center justify-center font-bold text-blue-400 text-[11px] shrink-0">
+                <div className="w-6 h-6 rounded-full bg-stone-800 flex items-center justify-center font-bold text-zinc-400 text-[11px] shrink-0">
                   3
                 </div>
                 <div>

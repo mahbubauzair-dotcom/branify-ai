@@ -14,7 +14,7 @@ export const DubaiLocationSection: React.FC<DubaiLocationSectionProps> = ({ conf
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <span className="text-xs font-bold text-blue-400 tracking-widest uppercase mb-2 block font-mono">
+          <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase mb-2 block font-mono">
             Location & Contact
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-stone-100">
@@ -37,7 +37,7 @@ export const DubaiLocationSection: React.FC<DubaiLocationSectionProps> = ({ conf
 
               {/* Address */}
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 mt-0.5">
+                <div className="w-10 h-10 rounded-xl bg-zinc-500/10 border border-zinc-500/20 flex items-center justify-center text-zinc-400 shrink-0 mt-0.5">
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
@@ -48,7 +48,7 @@ export const DubaiLocationSection: React.FC<DubaiLocationSectionProps> = ({ conf
 
               {/* Working Hours */}
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 mt-0.5">
+                <div className="w-10 h-10 rounded-xl bg-zinc-500/10 border border-zinc-500/20 flex items-center justify-center text-zinc-400 shrink-0 mt-0.5">
                   <Clock className="w-5 h-5" />
                 </div>
                 <div>
@@ -59,12 +59,12 @@ export const DubaiLocationSection: React.FC<DubaiLocationSectionProps> = ({ conf
 
               {/* Phone & WhatsApp */}
               <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0 mt-0.5">
+                <div className="w-10 h-10 rounded-xl bg-zinc-500/10 border border-zinc-500/20 flex items-center justify-center text-zinc-400 shrink-0 mt-0.5">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-xs font-semibold text-stone-400 uppercase tracking-wider block">Phone & WhatsApp</span>
-                  <a href={`tel:${config.phone.replace(/\s+/g, '')}`} className="text-sm text-blue-400 font-bold hover:underline block mt-0.5">
+                  <a href={`tel:${config.phone.replace(/\s+/g, '')}`} className="text-sm text-zinc-400 font-bold hover:underline block mt-0.5">
                     {config.phone}
                   </a>
                   <a
@@ -85,7 +85,7 @@ export const DubaiLocationSection: React.FC<DubaiLocationSectionProps> = ({ conf
                 href={config.googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full bg-blue-500 hover:bg-blue-400 text-stone-950 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md"
+                className="w-full bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-bold py-3.5 rounded-xl text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md"
               >
                 <Navigation className="w-4 h-4 fill-stone-950" />
                 <span>GET DIRECTIONS ON GOOGLE MAPS</span>
@@ -97,7 +97,7 @@ export const DubaiLocationSection: React.FC<DubaiLocationSectionProps> = ({ conf
                   href={`tel:${config.phone.replace(/\s+/g, '')}`}
                   className="bg-stone-800 hover:bg-stone-700 text-stone-100 font-medium py-2.5 rounded-xl text-xs border border-stone-700 flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <Phone className="w-3.5 h-3.5 text-blue-400" />
+                  <Phone className="w-3.5 h-3.5 text-zinc-400" />
                   <span>CALL NOW</span>
                 </a>
 
@@ -135,7 +135,7 @@ export const DubaiLocationSection: React.FC<DubaiLocationSectionProps> = ({ conf
             {/* Floating Location Marker Card */}
             <div className="relative z-10 bg-stone-950/95 border border-stone-700/80 p-4 rounded-xl max-w-sm backdrop-blur-md shadow-2xl mt-auto">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-blue-500 text-stone-950 font-bold flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-zinc-500 text-stone-950 font-bold flex items-center justify-center shrink-0">
                   <MapPin className="w-5 h-5 fill-stone-950" />
                 </div>
                 <div>

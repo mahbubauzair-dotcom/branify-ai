@@ -148,7 +148,7 @@ export const AdminOffers: React.FC = () => {
 
         <button
           onClick={handleOpenAdd}
-          className="bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-blue-500/20 active:scale-98 self-start sm:self-auto"
+          className="bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold px-5 py-3 rounded-xl text-xs uppercase tracking-wider flex items-center gap-2 shadow-lg shadow-zinc-500/20 active:scale-98 self-start sm:self-auto"
         >
           <Plus className="w-4 h-4 stroke-[3]" />
           <span>+ Create Offer</span>
@@ -176,7 +176,7 @@ export const AdminOffers: React.FC = () => {
             >
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-full border border-blue-500/20">
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-zinc-500/10 text-zinc-400 px-2.5 py-1 rounded-full border border-zinc-500/20">
                     {off.badge}
                   </span>
 
@@ -204,7 +204,7 @@ export const AdminOffers: React.FC = () => {
                 <div className="my-3 p-3 bg-stone-950 rounded-xl border border-stone-800 flex items-center justify-between">
                   <div>
                     <span className="text-[10px] text-stone-400 uppercase font-bold block">Special Price</span>
-                    <span className="text-xl font-black text-blue-400 font-mono">
+                    <span className="text-xl font-black text-zinc-400 font-mono">
                       {config.currency} {off.price}
                     </span>
                   </div>
@@ -230,7 +230,7 @@ export const AdminOffers: React.FC = () => {
                   onClick={() => handleOpenEdit(off)}
                   className="flex-1 py-2 bg-stone-800 hover:bg-stone-700 text-stone-100 rounded-xl text-xs font-bold border border-stone-700 flex items-center justify-center gap-1.5"
                 >
-                  <Edit2 className="w-3.5 h-3.5 text-blue-400" />
+                  <Edit2 className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Edit</span>
                 </button>
 
@@ -276,7 +276,7 @@ export const AdminOffers: React.FC = () => {
                   value={formData.title}
                   onChange={e => setFormData({ ...formData, title: e.target.value })}
                   placeholder="e.g. Executive Grooming Combo"
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                 />
               </div>
 
@@ -290,7 +290,7 @@ export const AdminOffers: React.FC = () => {
                     value={formData.badge}
                     onChange={e => setFormData({ ...formData, badge: e.target.value })}
                     placeholder="e.g. Best Value"
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
 
@@ -303,7 +303,7 @@ export const AdminOffers: React.FC = () => {
                     value={formData.validity}
                     onChange={e => setFormData({ ...formData, validity: e.target.value })}
                     placeholder="e.g. Valid Daily"
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -318,7 +318,7 @@ export const AdminOffers: React.FC = () => {
                     min="0"
                     value={formData.price}
                     onChange={e => setFormData({ ...formData, price: Number(e.target.value) })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-blue-400 font-bold font-mono text-sm focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-zinc-400 font-bold font-mono text-sm focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
 
@@ -331,7 +331,7 @@ export const AdminOffers: React.FC = () => {
                     min="0"
                     value={formData.originalPrice}
                     onChange={e => setFormData({ ...formData, originalPrice: Number(e.target.value) })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-400 font-mono focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-400 font-mono focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -345,7 +345,7 @@ export const AdminOffers: React.FC = () => {
                   value={formData.includedServicesText}
                   onChange={e => setFormData({ ...formData, includedServicesText: e.target.value })}
                   placeholder="e.g. Haircut, Beard Trim, Hot Towel"
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                 />
               </div>
 
@@ -358,7 +358,7 @@ export const AdminOffers: React.FC = () => {
                   value={formData.description}
                   onChange={e => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Short offer summary..."
-                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                  className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                 />
               </div>
 
@@ -371,7 +371,7 @@ export const AdminOffers: React.FC = () => {
                     type="date"
                     value={formData.startDate}
                     onChange={e => setFormData({ ...formData, startDate: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
 
@@ -383,7 +383,7 @@ export const AdminOffers: React.FC = () => {
                     type="date"
                     value={formData.endDate}
                     onChange={e => setFormData({ ...formData, endDate: e.target.value })}
-                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-stone-100 focus:border-zinc-500 focus:outline-none"
                   />
                 </div>
               </div>
@@ -394,7 +394,7 @@ export const AdminOffers: React.FC = () => {
                   type="checkbox"
                   checked={formData.isActive}
                   onChange={e => setFormData({ ...formData, isActive: e.target.checked })}
-                  className="w-4 h-4 accent-blue-500 rounded"
+                  className="w-4 h-4 accent-zinc-500 rounded"
                 />
               </div>
 
@@ -408,7 +408,7 @@ export const AdminOffers: React.FC = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-blue-500 hover:bg-blue-400 text-stone-950 font-extrabold py-3 rounded-xl uppercase text-xs shadow-lg shadow-blue-500/20"
+                  className="flex-1 bg-zinc-500 hover:bg-zinc-400 text-stone-950 font-extrabold py-3 rounded-xl uppercase text-xs shadow-lg shadow-zinc-500/20"
                 >
                   Save Offer
                 </button>

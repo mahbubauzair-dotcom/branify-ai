@@ -59,7 +59,7 @@ export const GallerySection: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <span className="text-xs font-bold text-blue-400 tracking-widest uppercase mb-2 block">
+          <span className="text-xs font-bold text-zinc-400 tracking-widest uppercase mb-2 block">
             Craftsmanship in Action
           </span>
           <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-stone-100">
@@ -78,7 +78,7 @@ export const GallerySection: React.FC = () => {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
                 activeCategory === cat.id
-                  ? 'bg-blue-500 text-stone-950 shadow-md'
+                  ? 'bg-zinc-500 text-stone-950 shadow-md'
                   : 'bg-stone-900 text-stone-300 hover:text-white border border-stone-800 hover:border-stone-700'
               }`}
             >
@@ -104,10 +104,10 @@ export const GallerySection: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
 
               <div className="absolute inset-0 p-5 flex flex-col justify-end text-left">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-400 bg-stone-950/80 px-2.5 py-0.5 rounded-full border border-blue-500/30 w-max mb-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 bg-stone-950/80 px-2.5 py-0.5 rounded-full border border-zinc-500/30 w-max mb-1">
                   {item.category}
                 </span>
-                <h3 className="font-heading font-bold text-stone-100 text-base group-hover:text-blue-300 transition-colors">
+                <h3 className="font-heading font-bold text-stone-100 text-base group-hover:text-zinc-300 transition-colors">
                   {item.title}
                 </h3>
                 <p className="text-xs text-stone-300 line-clamp-1 opacity-90">
@@ -115,7 +115,7 @@ export const GallerySection: React.FC = () => {
                 </p>
               </div>
 
-              <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-950/80 border border-stone-700 flex items-center justify-center text-blue-400 opacity-0 group-hover:opacity-100 transition-all scale-90 group-hover:scale-100">
+              <div className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-950/80 border border-stone-700 flex items-center justify-center text-zinc-400 opacity-0 group-hover:opacity-100 transition-all scale-90 group-hover:scale-100">
                 <Maximize2 className="w-4 h-4" />
               </div>
             </div>
@@ -154,7 +154,7 @@ export const GallerySection: React.FC = () => {
               className="max-h-[70vh] w-auto max-w-full object-contain rounded-2xl border border-stone-800 shadow-2xl"
             />
             <div className="mt-4 text-center">
-              <span className="text-xs text-blue-400 font-bold uppercase tracking-wider block mb-1">
+              <span className="text-xs text-zinc-400 font-bold uppercase tracking-wider block mb-1">
                 {filteredItems[lightboxIndex].category} • Photo {lightboxIndex + 1} of {filteredItems.length}
               </span>
               <h3 className="font-heading text-xl font-bold text-stone-100">
