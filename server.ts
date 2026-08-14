@@ -22,6 +22,44 @@ const PORT = 3000;
 
 app.use(express.json());
 
+// ---------------------------------------------------------------------------
+// VERCEL REWRITE RESTORATION MIDDLEWARE
+// ---------------------------------------------------------------------------
+// Vercel's @vercel/node runtime does NOT support catch-all route files like
+// `api/[[...slug]].ts` for non-Next.js projects (it only matches single-segment
+// paths). To reliably route ALL /api/* requests to a single serverless
+// function, vercel.json rewrites:
+//     /api/:path*  ->  /api?__p=:path*
+// i.e. a request to /api/auth/owner-login becomes /api?__p=auth/owner-login.
+//
+// This middleware restores the original URL so Express route matching works
+// as if the request had never been rewritten. It:
+//   1. Reads __p from the query string (set by the Vercel rewrite).
+//   2. Strips __p from the query string (preserving any other query params).
+//   3. Reconstructs req.url as /api/<original-path>?<remaining-query>.
+//
+// On local dev (no Vercel rewrite), __p is absent, so this is a no-op.
+// ---------------------------------------------------------------------------
+app.use((req: any, _res: any, next: any) => {
+  const qIndex = req.url.indexOf('?');
+  if (qIndex === -1) {
+    return next();
+  }
+  const queryString = req.url.slice(qIndex + 1);
+  const params = new URLSearchParams(queryString);
+  const originalPath = params.get('__p');
+  if (!originalPath) {
+    return next();
+  }
+  params.delete('__p');
+  const remainingQuery = params.toString();
+  // Decode the path (Vercel URL-encodes slashes in :path* as %2F in some
+  // cases; handle both encoded and plain forms defensively).
+  const decodedPath = decodeURIComponent(originalPath);
+  req.url = `/api/${decodedPath}${remainingQuery ? '?' + remainingQuery : ''}`;
+  next();
+});
+
 // In-memory gateway cache
 let cachedRawModels: VectorEngineRawModel[] | null = null;
 let cachedCuratedModels: CuratedModelInfo[] | null = null;

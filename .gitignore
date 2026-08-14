@@ -6,3 +6,9 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# The Vercel serverless function entry is generated at build time by esbuild
+# (see package.json "build" script). It must NOT be committed — it is
+# regenerated on every Vercel deployment from server.ts.
+api/index.cjs
+api/index.cjs.map
