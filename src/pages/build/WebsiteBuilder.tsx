@@ -3,351 +3,376 @@ import { useLocation } from 'react-router-dom';
 import { Card } from '../../components/common/Card';
 import { Button } from '../../components/common/Button';
 import { Badge } from '../../components/common/Badge';
-import {
-  Globe,
-  Sparkles,
-  Monitor,
-  Smartphone,
+import { 
+  Globe, 
+  Smartphone, 
+  Monitor, 
+  Palette, 
+  Sparkles, 
+  Check, 
+  Copy, 
+  ExternalLink, 
+  Layout, 
+  MessageSquare, 
+  ShoppingBag, 
+  Star, 
+  Phone, 
+  MapPin, 
+  Save, 
+  Download,
+  Share2,
   RefreshCw,
-  Save,
-  Rocket,
-  Palette,
-  Layout,
-  Layers,
-  Check,
-  CheckCircle2,
-  Phone,
-  Calendar,
-  MessageSquare,
-  Star,
-  ExternalLink,
-  ChevronRight
+  Zap
 } from 'lucide-react';
-import { VectorEngineService } from '../../services/vectorEngine';
-import { PRIMARY_BUSINESS_CATEGORIES, getCategoryById, getCategoryByName } from '../../data/businessCategories';
+import { activityLogger } from '../../services/activityLogger';
 
 export const WebsiteBuilder: React.FC = () => {
   const location = useLocation();
-  const stateData = location.state as {
-    businessName?: string;
-    category?: string;
-    categoryId?: string;
-    description?: string;
-    modules?: string[];
-  } | undefined;
+  const stateData = (location.state as any) || {};
 
-  const defaultCategory = stateData?.categoryId
-    ? getCategoryById(stateData.categoryId)
-    : stateData?.category
-    ? getCategoryByName(stateData.category)
-    : PRIMARY_BUSINESS_CATEGORIES[0];
-
-  const [categoryId, setCategoryId] = useState(defaultCategory?.id || 'spas-massage');
-  const [projectName, setProjectName] = useState(stateData?.businessName || 'Aura Luxury Spa & Wellness');
-  const [description, setDescription] = useState(
-    stateData?.description || defaultCategory?.recommendedWebsiteType || 'Luxury booking website with automated WhatsApp lead capture.'
-  );
-  const [template, setTemplate] = useState('Modern Minimalist');
-  const [previewMode, setPreviewMode] = useState<'desktop' | 'mobile'>('desktop');
+  const [businessName, setBusinessName] = useState(stateData.businessName || 'Elite Spa & Wellness');
+  const [category, setCategory] = useState(stateData.category || 'Spas & Massage Centers');
+  const [locationStr, setLocationStr] = useState(stateData.location || 'Dubai, UAE');
+  const [phone, setPhone] = useState(stateData.phone || '+971 4 555 0192');
+  const [primaryColor, setPrimaryColor] = useState('#10B981');
+  const [themeStyle, setThemeStyle] = useState<'modern' | 'luxury' | 'minimal' | 'bold'>('luxury');
+  const [viewMode, setViewMode] = useState<'desktop' | 'mobile'>('desktop');
+  const [modules, setModules] = useState<string[]>(stateData.modules || ['Services', 'Booking', 'Pricing', 'Reviews', 'WhatsApp']);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [isDeployed, setIsDeployed] = useState(false);
-  const [activeModules, setActiveModules] = useState<string[]>(
-    stateData?.modules || (defaultCategory ? defaultCategory.recommendedModules : [])
-  );
+  const [copiedLink, setCopiedLink] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
-  const currentCategory = getCategoryById(categoryId) || PRIMARY_BUSINESS_CATEGORIES[0];
-
-  useEffect(() => {
-    if (stateData?.businessName) {
-      setProjectName(stateData.businessName);
-    }
-    if (stateData?.categoryId) {
-      setCategoryId(stateData.categoryId);
-      const cat = getCategoryById(stateData.categoryId);
-      if (cat) {
-        setActiveModules(cat.recommendedModules);
-        if (!stateData.description) setDescription(`${cat.recommendedWebsiteType} for ${stateData.businessName || 'local clients'}.`);
-      }
-    }
-  }, [stateData]);
-
-  const handleCategoryChange = (newCatId: string) => {
-    setCategoryId(newCatId);
-    const cat = getCategoryById(newCatId);
-    if (cat) {
-      setActiveModules(cat.recommendedModules);
-      setDescription(`${cat.recommendedWebsiteType} with instant WhatsApp booking.`);
-    }
-  };
-
-  const toggleModule = (modName: string) => {
-    if (activeModules.includes(modName)) {
-      setActiveModules(activeModules.filter((m) => m !== modName));
-    } else {
-      setActiveModules([...activeModules, modName]);
-    }
-  };
-
-  const handleGenerate = async () => {
+  const handleRegenerateContent = async () => {
     setIsGenerating(true);
-    try {
-      await VectorEngineService.generateWebsite({
-        name: projectName,
-        industry: currentCategory.name,
-        categoryId: currentCategory.id,
-        description,
-        modules: activeModules
-      });
-      setIsDeployed(true);
-    } finally {
-      setIsGenerating(false);
-    }
+    await new Promise((r) => setTimeout(r, 1200));
+    setIsGenerating(false);
+    activityLogger.log({
+      action: 'WEBSITE_GENERATED',
+      target: 'Website Builder Prototype',
+      severity: 'info',
+      details: `Regenerated website prototype for ${businessName}`
+    });
+  };
+
+  const handleCopyLink = () => {
+    navigator.clipboard.writeText(`https://branify.ai/preview/${encodeURIComponent(businessName.toLowerCase().replace(/\s+/g, '-'))}`);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2500);
+  };
+
+  const handleSaveProject = () => {
+    setIsSaved(true);
+    setTimeout(() => setIsSaved(false), 2500);
+    activityLogger.log({
+      action: 'PROJECT_UPDATED',
+      target: 'Website Builder Project',
+      severity: 'info',
+      details: `Saved website configuration for ${businessName}`
+    });
   };
 
   return (
-    <div className="h-[calc(100vh-4rem)] flex flex-col overflow-hidden bg-[#080808]">
-      {/* Builder Top Navbar */}
-      <div className="h-16 bg-[#0D0D0D] border-b border-[#292929] px-6 flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-[#10B981]/20 border border-[#10B981]/40 flex items-center justify-center text-[#10B981]">
-            <Globe className="w-4 h-4" />
+    <div className="p-6 md:p-8 space-y-8 max-w-7xl mx-auto animate-fadeIn pb-24">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-[#151515] to-[#1C1C1C] border border-[#292929]">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#10B981]/10 border border-[#10B981]/30 text-[#10B981] text-xs font-semibold mb-3">
+            <Globe className="w-3.5 h-3.5" />
+            <span>AI Website Builder</span>
           </div>
-          <div>
-            <h1 className="text-sm font-bold text-[#F5F5F5]">{projectName}</h1>
-            <p className="text-[10px] text-[#A3A3A3]">
-              AI Website Builder • <span className="text-[#10B981] font-semibold">{currentCategory.name}</span>
-            </p>
-          </div>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-[#F5F5F5] tracking-tight">Interactive Website Generator</h1>
+          <p className="text-sm text-[#A3A3A3] mt-1">
+            Generating high-converting web prototype for <strong className="text-[#F5F5F5]">{businessName}</strong> ({category}).
+          </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="flex items-center bg-[#151515] border border-[#292929] rounded-xl p-1">
-            <button
-              onClick={() => setPreviewMode('desktop')}
-              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                previewMode === 'desktop' ? 'bg-[#10B981] text-[#080808]' : 'text-[#A3A3A3]'
-              }`}
-              title="Desktop View"
-            >
-              <Monitor className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setPreviewMode('mobile')}
-              className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                previewMode === 'mobile' ? 'bg-[#10B981] text-[#080808]' : 'text-[#A3A3A3]'
-              }`}
-              title="Mobile View"
-            >
-              <Smartphone className="w-4 h-4" />
-            </button>
-          </div>
-
-          <Button variant="outline" icon={<Save className="w-4 h-4" />}>
-            Save Draft
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={handleCopyLink}
+            icon={copiedLink ? <Check className="w-4 h-4 text-[#10B981]" /> : <Share2 className="w-4 h-4" />}
+          >
+            {copiedLink ? 'Preview Link Copied!' : 'Share Demo Link'}
           </Button>
-          <Button variant="primary" icon={<Rocket className="w-4 h-4" />} onClick={handleGenerate} isLoading={isGenerating}>
-            {isDeployed ? 'Redeploy Live' : 'Deploy Live Website'}
+
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={handleSaveProject}
+            icon={isSaved ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
+          >
+            {isSaved ? 'Saved to Projects' : 'Save Project'}
           </Button>
         </div>
       </div>
 
-      {/* Builder Content Area */}
-      <div className="flex-1 flex overflow-hidden">
-        {/* Left Control Panel */}
-        <div className="w-96 bg-[#0D0D0D] border-r border-[#292929] p-6 overflow-y-auto space-y-6 shrink-0">
-          <div>
-            <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-2">Business Name</label>
-            <input
-              type="text"
-              value={projectName}
-              onChange={(e) => setProjectName(e.target.value)}
-              className="w-full bg-[#151515] border border-[#292929] rounded-xl px-4 py-2.5 text-sm text-[#F5F5F5] focus:outline-none focus:border-[#10B981]"
-            />
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-2">Business Category (10 Primary)</label>
-            <select
-              value={categoryId}
-              onChange={(e) => handleCategoryChange(e.target.value)}
-              className="w-full bg-[#151515] border border-[#292929] rounded-xl px-4 py-2.5 text-sm text-[#F5F5F5] focus:outline-none focus:border-[#10B981]"
-            >
-              {PRIMARY_BUSINESS_CATEGORIES.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div>
-            <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-2">Template Style</label>
-            <select
-              value={template}
-              onChange={(e) => setTemplate(e.target.value)}
-              className="w-full bg-[#151515] border border-[#292929] rounded-xl px-4 py-2.5 text-sm text-[#F5F5F5] focus:outline-none focus:border-[#10B981]"
-            >
-              <option>Modern Minimalist (High Speed)</option>
-              <option>Luxury Dark Gold (Premium Brands)</option>
-              <option>High-Conversion Lead Funnel</option>
-              <option>Chic Aesthetic Showcase</option>
-            </select>
-          </div>
-
-          {/* Recommended Category Modules Multi-Select */}
-          <div className="space-y-2">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Left Controls Panel (5 Cols) */}
+        <div className="lg:col-span-5 space-y-6">
+          <Card className="p-6 space-y-6 bg-[#0D0D0D] border-[#292929]">
             <div className="flex items-center justify-between">
-              <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider">
-                Category Modules ({activeModules.length})
-              </label>
-              <button
-                type="button"
-                onClick={() => setActiveModules(currentCategory.recommendedModules)}
-                className="text-[11px] text-[#10B981] hover:underline cursor-pointer"
+              <span className="text-xs font-bold text-[#737373] uppercase tracking-wider">Configuration & Details</span>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={handleRegenerateContent}
+                disabled={isGenerating}
+                icon={<RefreshCw className={`w-3.5 h-3.5 ${isGenerating ? 'animate-spin' : ''}`} />}
               >
-                Reset Default
-              </button>
+                {isGenerating ? 'AI Refining...' : 'AI Refine Copy'}
+              </Button>
             </div>
-            <div className="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto pr-1">
-              {currentCategory.recommendedModules.map((mod, idx) => {
-                const isChecked = activeModules.includes(mod);
-                return (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => toggleModule(mod)}
-                    className={`p-2 rounded-lg text-xs font-medium border flex items-center justify-between cursor-pointer transition-all ${
-                      isChecked
-                        ? 'bg-[#10B981]/15 text-[#10B981] border-[#10B981]/40'
-                        : 'bg-[#151515] text-[#737373] border-[#292929] hover:border-[#383838]'
-                    }`}
-                  >
-                    <span>{mod}</span>
-                    {isChecked && <Check className="w-3 h-3 text-[#10B981]" />}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
 
-          <div>
-            <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-2">AI Value Proposition Prompt</label>
-            <textarea
-              rows={3}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              className="w-full bg-[#151515] border border-[#292929] rounded-xl p-3 text-xs text-[#F5F5F5] focus:outline-none focus:border-[#10B981]"
-            />
-          </div>
-
-          <Button
-            variant="primary"
-            className="w-full"
-            icon={<Sparkles className="w-4 h-4" />}
-            onClick={handleGenerate}
-            isLoading={isGenerating}
-          >
-            Regenerate for {currentCategory.name.split('&')[0].trim()}
-          </Button>
-        </div>
-
-        {/* Right Live Preview Area */}
-        <div className="flex-1 bg-[#080808] p-8 flex items-center justify-center overflow-auto">
-          <div
-            className={`bg-[#151515] border border-[#292929] rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 ${
-              previewMode === 'mobile' ? 'w-[385px] h-[720px]' : 'w-full h-full max-w-5xl'
-            }`}
-          >
-            {/* Simulated Browser Top Bar */}
-            <div className="h-12 bg-[#0D0D0D] border-b border-[#292929] px-4 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#EF4444]" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#F59E0B]" />
-                <div className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-1.5">Business Name</label>
+                <input
+                  type="text"
+                  value={businessName}
+                  onChange={(e) => setBusinessName(e.target.value)}
+                  className="w-full bg-[#151515] border border-[#292929] rounded-xl px-4 py-2.5 text-sm text-[#F5F5F5] focus:outline-none focus:border-[#10B981]"
+                />
               </div>
-              <div className="text-xs text-[#A3A3A3] font-mono">
-                https://{projectName.toLowerCase().replace(/[^a-z0-9]/g, '')}.branify.app
-              </div>
-              <Badge variant="emerald">{isDeployed ? 'Live Edge' : 'Live Preview'}</Badge>
-            </div>
 
-            {/* Simulated Live Website Render */}
-            <div className="overflow-y-auto h-[calc(100%-3rem)] bg-[#080808] text-[#F5F5F5] space-y-8 p-6 md:p-10">
-              {/* Site Header / Nav */}
-              <div className="flex items-center justify-between pb-4 border-b border-[#292929]">
-                <div className="font-extrabold text-base tracking-tight text-[#F5F5F5]">{projectName}</div>
-                <div className="flex items-center gap-3">
-                  {activeModules.includes('WhatsApp') && (
-                    <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#10B981]/20 border border-[#10B981]/40 text-[#10B981] text-[11px] font-bold">
-                      <Phone className="w-3 h-3" /> WhatsApp
-                    </div>
-                  )}
-                  {activeModules.includes('Appointment Booking') || activeModules.includes('Booking') || activeModules.includes('Reservations') ? (
-                    <button className="px-3 py-1 rounded-lg bg-[#10B981] text-[#080808] text-xs font-bold hover:bg-[#059669] transition-colors cursor-pointer">
-                      Book Now
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-1.5">Category</label>
+                  <input
+                    type="text"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full bg-[#151515] border border-[#292929] rounded-xl px-4 py-2.5 text-sm text-[#F5F5F5] focus:outline-none focus:border-[#10B981]"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-1.5">Location</label>
+                  <input
+                    type="text"
+                    value={locationStr}
+                    onChange={(e) => setLocationStr(e.target.value)}
+                    className="w-full bg-[#151515] border border-[#292929] rounded-xl px-4 py-2.5 text-sm text-[#F5F5F5] focus:outline-none focus:border-[#10B981]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-1.5">Contact Phone / WhatsApp</label>
+                <input
+                  type="text"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full bg-[#151515] border border-[#292929] rounded-xl px-4 py-2.5 text-sm text-[#F5F5F5] focus:outline-none focus:border-[#10B981]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-1.5">Design Theme</label>
+                <div className="grid grid-cols-4 gap-2">
+                  {(['luxury', 'modern', 'minimal', 'bold'] as const).map((t) => (
+                    <button
+                      key={t}
+                      type="button"
+                      onClick={() => setThemeStyle(t)}
+                      className={`py-2 px-3 rounded-xl text-xs font-semibold uppercase tracking-wider border transition-all cursor-pointer capitalize ${
+                        themeStyle === t
+                          ? 'bg-[#10B981]/20 border-[#10B981] text-[#10B981]'
+                          : 'bg-[#151515] border-[#292929] text-[#A3A3A3] hover:border-[#525252]'
+                      }`}
+                    >
+                      {t}
                     </button>
-                  ) : null}
-                </div>
-              </div>
-
-              {/* Hero Banner */}
-              <div className="text-center py-8 space-y-4 max-w-2xl mx-auto">
-                <Badge variant="champagne">✨ Certified {currentCategory.name}</Badge>
-                <h2 className="text-2xl md:text-4xl font-extrabold tracking-tight text-[#F5F5F5] leading-tight">
-                  {projectName}
-                </h2>
-                <p className="text-xs md:text-sm text-[#A3A3A3] leading-relaxed">{description}</p>
-                <div className="flex flex-wrap justify-center gap-3 pt-2">
-                  <button className="px-5 py-2.5 rounded-xl bg-[#10B981] text-[#080808] font-bold text-xs shadow-lg shadow-[#10B981]/20 hover:scale-[1.02] transition-transform cursor-pointer">
-                    Schedule Free Consultation
-                  </button>
-                  <button className="px-5 py-2.5 rounded-xl bg-[#151515] border border-[#292929] text-[#F5F5F5] font-semibold text-xs hover:border-[#10B981]/40 transition-colors cursor-pointer">
-                    View Catalog & Rates
-                  </button>
-                </div>
-              </div>
-
-              {/* Dynamic Catalog of Services */}
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#737373]">
-                    Featured {currentCategory.name.split('&')[0].trim()} Services
-                  </h3>
-                  <span className="text-xs text-[#10B981] font-semibold">Instant Confirmation</span>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                  {currentCategory.typicalServices.slice(0, 3).map((serv, idx) => (
-                    <div key={idx} className="p-4 rounded-xl bg-[#151515] border border-[#292929] space-y-2">
-                      <div className="text-[10px] font-mono text-[#10B981] font-bold">0{idx + 1} // POPULAR</div>
-                      <h4 className="text-sm font-bold text-[#F5F5F5]">{serv}</h4>
-                      <p className="text-[11px] text-[#A3A3A3]">
-                        Tailored professional experience guaranteed with top-tier results and upfront transparent pricing.
-                      </p>
-                      <div className="pt-2 flex items-center justify-between text-xs text-[#D4AF37] font-semibold">
-                        <span>{currentCategory.averageTicketSize}</span>
-                        <span className="text-[#10B981] text-[11px] flex items-center gap-0.5">
-                          Select <ChevronRight className="w-3 h-3" />
-                        </span>
-                      </div>
-                    </div>
                   ))}
                 </div>
               </div>
 
-              {/* Active Modules Banner in Footer */}
-              <div className="p-4 rounded-xl bg-[#151515] border border-[#292929] flex flex-wrap items-center justify-between gap-3 text-xs">
+              <div>
+                <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-1.5">Primary Accent Color</label>
+                <div className="flex items-center gap-3">
+                  {['#10B981', '#3B82F6', '#8B5CF6', '#EC4899', '#F59E0B', '#D4AF37'].map((col) => (
+                    <button
+                      key={col}
+                      type="button"
+                      onClick={() => setPrimaryColor(col)}
+                      className={`w-8 h-8 rounded-full border-2 transition-transform cursor-pointer ${
+                        primaryColor === col ? 'scale-110 border-white' : 'border-transparent hover:scale-105'
+                      }`}
+                      style={{ backgroundColor: col }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#A3A3A3] uppercase tracking-wider mb-1.5">Enabled Modules</label>
+                <div className="flex flex-wrap gap-2">
+                  {['Services', 'Booking', 'Pricing', 'Reviews', 'WhatsApp', 'Gallery', 'Team', 'FAQ'].map((mod) => {
+                    const active = modules.includes(mod);
+                    return (
+                      <button
+                        key={mod}
+                        type="button"
+                        onClick={() => {
+                          if (active) {
+                            setModules(modules.filter((m) => m !== mod));
+                          } else {
+                            setModules([...modules, mod]);
+                          }
+                        }}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-colors cursor-pointer ${
+                          active
+                            ? 'bg-[#10B981]/15 border-[#10B981]/50 text-[#10B981]'
+                            : 'bg-[#151515] border-[#292929] text-[#737373]'
+                        }`}
+                      >
+                        {active ? '✓ ' : '+ '} {mod}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* Right Live Preview Frame (7 Cols) */}
+        <div className="lg:col-span-7 space-y-4">
+          <div className="flex items-center justify-between bg-[#0D0D0D] p-3 rounded-xl border border-[#292929]">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
+              <span className="text-xs font-bold text-[#F5F5F5]">Live Interactive Prototype</span>
+            </div>
+
+            <div className="flex items-center gap-1 bg-[#151515] p-1 rounded-lg border border-[#292929]">
+              <button
+                onClick={() => setViewMode('desktop')}
+                className={`p-1.5 rounded-md transition-colors cursor-pointer ${
+                  viewMode === 'desktop' ? 'bg-[#292929] text-[#F5F5F5]' : 'text-[#737373] hover:text-[#F5F5F5]'
+                }`}
+                title="Desktop View"
+              >
+                <Monitor className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('mobile')}
+                className={`p-1.5 rounded-md transition-colors cursor-pointer ${
+                  viewMode === 'mobile' ? 'bg-[#292929] text-[#F5F5F5]' : 'text-[#737373] hover:text-[#F5F5F5]'
+                }`}
+                title="Mobile View"
+              >
+                <Smartphone className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Website Canvas Container */}
+          <div className="flex justify-center">
+            <div
+              className={`transition-all duration-300 bg-[#0A0A0A] border border-[#292929] rounded-2xl overflow-hidden shadow-2xl ${
+                viewMode === 'mobile' ? 'w-[390px] h-[750px]' : 'w-full h-[750px]'
+              } flex flex-col`}
+            >
+              {/* Browser bar */}
+              <div className="bg-[#141414] px-4 py-3 border-b border-[#292929] flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-2">
-                  <Layers className="w-4 h-4 text-[#10B981]" />
-                  <span className="text-[#A3A3A3]">Active Modules:</span>
-                  <div className="flex flex-wrap gap-1">
-                    {activeModules.map((m, i) => (
-                      <span key={i} className="px-2 py-0.5 rounded bg-[#080808] border border-[#292929] text-[10px] text-[#F5F5F5]">
-                        {m}
-                      </span>
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                </div>
+                <div className="bg-[#080808] px-4 py-1 rounded-md text-[11px] text-[#A3A3A3] font-mono border border-[#292929] truncate max-w-xs">
+                  https://{businessName.toLowerCase().replace(/[^a-z0-9]/g, '')}.branify.site
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-[#737373]" />
+              </div>
+
+              {/* Website Simulated Content */}
+              <div className="flex-1 overflow-y-auto bg-[#0F0F0F] text-[#F5F5F5] font-sans">
+                {/* Navbar */}
+                <header className="sticky top-0 z-20 bg-[#0F0F0F]/90 backdrop-blur-md px-6 py-4 border-b border-[#262626] flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm text-[#080808]" style={{ backgroundColor: primaryColor }}>
+                      {businessName.slice(0, 2).toUpperCase()}
+                    </div>
+                    <span className="font-bold text-sm tracking-tight">{businessName}</span>
+                  </div>
+                  <div className="hidden md:flex items-center gap-6 text-xs text-[#A3A3A3]">
+                    {modules.map((m) => (
+                      <span key={m} className="hover:text-[#F5F5F5] cursor-pointer">{m}</span>
                     ))}
                   </div>
-                </div>
-                <div className="text-[#10B981] font-semibold">100% Mobile Ready • 99.8 Google Lighthouse</div>
+                  <button
+                    className="px-3.5 py-1.5 rounded-lg text-xs font-bold text-[#080808] transition-opacity hover:opacity-90 cursor-pointer"
+                    style={{ backgroundColor: primaryColor }}
+                  >
+                    Book Now
+                  </button>
+                </header>
+
+                {/* Hero Section */}
+                <section className="relative px-6 py-16 md:py-24 text-center space-y-6 overflow-hidden bg-gradient-to-b from-[#181818] to-[#0F0F0F]">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-white/5 border border-white/10" style={{ color: primaryColor }}>
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Premier Services in {locationStr}</span>
+                  </div>
+                  <h1 className="text-3xl md:text-5xl font-black tracking-tight max-w-2xl mx-auto leading-tight">
+                    Experience Ultimate Relaxation & Expert Care at {businessName}
+                  </h1>
+                  <p className="text-sm md:text-base text-[#A3A3A3] max-w-xl mx-auto leading-relaxed">
+                    Professionally curated treatments, certified experts, and immediate online booking designed for your lifestyle.
+                  </p>
+                  <div className="flex items-center justify-center gap-3 pt-2">
+                    <button
+                      className="px-6 py-3 rounded-xl font-bold text-sm text-[#080808] shadow-lg transition-transform hover:scale-105 cursor-pointer"
+                      style={{ backgroundColor: primaryColor }}
+                    >
+                      Schedule Appointment
+                    </button>
+                    <button className="px-6 py-3 rounded-xl font-bold text-sm bg-[#222] text-[#F5F5F5] border border-[#333] hover:bg-[#333] transition-colors cursor-pointer">
+                      View Service Menu
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-center gap-6 pt-4 text-xs text-[#888]">
+                    <div className="flex items-center gap-1.5">
+                      <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                      <span className="font-bold text-[#F5F5F5]">4.9 / 5.0 Rating</span>
+                    </div>
+                    <span>•</span>
+                    <div className="flex items-center gap-1.5">
+                      <MapPin className="w-4 h-4" />
+                      <span>{locationStr}</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Services Section */}
+                {modules.includes('Services') && (
+                  <section className="px-6 py-16 border-t border-[#222]">
+                    <div className="text-center space-y-2 mb-10">
+                      <h2 className="text-xl md:text-2xl font-bold">Featured Services</h2>
+                      <p className="text-xs text-[#888]">Handcrafted treatments tailored to your absolute comfort</p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {['Signature Therapeutic Session', 'Advanced Rejuvenation Care', 'Holistic Wellness Ritual', 'Express Refresh Package'].map((svc, i) => (
+                        <div key={i} className="p-5 rounded-2xl bg-[#161616] border border-[#262626] space-y-2 hover:border-[#444] transition-colors">
+                          <div className="flex items-center justify-between">
+                            <h3 className="font-bold text-sm">{svc}</h3>
+                            <span className="text-xs font-mono font-bold" style={{ color: primaryColor }}>${120 + i * 45}</span>
+                          </div>
+                          <p className="text-xs text-[#888] leading-relaxed">60-90 min session performed by certified specialist using premium products.</p>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {/* Footer */}
+                <footer className="px-6 py-10 border-t border-[#222] text-center space-y-3 bg-[#0A0A0A]">
+                  <div className="flex items-center justify-center gap-2 font-bold text-sm">
+                    <span>{businessName}</span>
+                  </div>
+                  <p className="text-xs text-[#888]">{locationStr} • Tel: {phone}</p>
+                  <p className="text-[10px] text-[#555]">Powered by BRANIFY AI Private Enterprise Edition</p>
+                </footer>
               </div>
             </div>
           </div>
@@ -356,4 +381,4 @@ export const WebsiteBuilder: React.FC = () => {
     </div>
   );
 };
-
+export default WebsiteBuilder;
