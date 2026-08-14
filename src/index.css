@@ -36,3 +36,59 @@
   animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
+
+/* ============================================================================
+   BRANIFY Web App Builder — Responsive helpers for demo apps
+   The demo frontend/admin components use inline styles for theming, but
+   responsive breakpoints need CSS media queries. These helper classes are
+   applied via className alongside inline styles.
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .hidden-mobile { display: none !important; }
+  .mobile-only { display: flex !important; }
+  .mobile-only-block { display: block !important; }
+
+  /* Convert multi-column demo layouts to single column on mobile */
+  .hero-grid,
+  .location-grid,
+  .footer-grid,
+  .admin-grid,
+  .pwa-grid,
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Admin sidebar becomes a horizontal scroll on mobile */
+  .admin-sidebar {
+    width: 100% !important;
+    max-height: 60px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 100 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 4px !important;
+    padding: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  .admin-main {
+    padding: 16px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only,
+  .mobile-only-block {
+    display: none !important;
+  }
+}
+
+/* Default: hide mobile-only elements on desktop */
+.mobile-only,
+.mobile-only-block {
+  display: none;
+}
