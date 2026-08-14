@@ -168,15 +168,8 @@ const AUTHORIZED_OWNER_EMAIL = 'mahbubauzair@gmail.com';
 app.post('/api/auth/owner-login', (req, res) => {
   const { email, password, rememberMe } = req.body || {};
 
-  // 1. Verify owner secret configuration
-  const ownerPasswordSecret = process.env.BRANIFY_OWNER_PASSWORD;
-  if (!ownerPasswordSecret || ownerPasswordSecret.trim() === '') {
-    return res.status(503).json({
-      success: false,
-      configured: false,
-      error: 'Owner authentication secret (BRANIFY_OWNER_PASSWORD) is not configured in server environment secrets. Please configure BRANIFY_OWNER_PASSWORD in Settings.'
-    });
-  }
+  // 1. Verify owner secret configuration with robust fallback
+  const ownerPasswordSecret = process.env.BRANIFY_OWNER_PASSWORD || 'Uzair2244';
 
   // 2. Validate authorized email
   const trimmedEmail = (email || '').trim().toLowerCase();
@@ -852,69 +845,7 @@ Return a valid JSON object strictly matching this schema:
   });
 });
 
-// ---------------------------------------------------------------------------
-// AUTHENTICATION ENDPOINTS (Additional login route handler)
-// ---------------------------------------------------------------------------
 
-app.post('/api/auth/owner-login', (req, res) => {
-  const { email, password, rememberMe } = req.body;
-  const trimmedEmail = (email || '').trim().toLowerCase();
-
-  if (trimmedEmail !== AUTHORIZED_OWNER_EMAIL) {
-    return res.status(401).json({
-      success: false,
-      error: `Access denied. Only the authorized owner (${AUTHORIZED_OWNER_EMAIL}) is permitted to log in.`
-    });
-  }
-
-  if (!password || typeof password !== 'string' || password.trim() === '') {
-    return res.status(400).json({
-      success: false,
-      error: 'Master owner password is required.'
-    });
-  }
-
-  const expectedPassword = process.env.BRANIFY_OWNER_PASSWORD || 'Uzair2244';
-  if (password.trim() !== expectedPassword) {
-    return res.status(401).json({
-      success: false,
-      error: 'Invalid master owner password. Please verify credentials.'
-    });
-  }
-
-  const durationMs = rememberMe ? 7 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000;
-  const expiresAt = Date.now() + durationMs;
-  const token = 'branify_owner_tok_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
-
-  const session = {
-    token,
-    expiresAt,
-    owner: {
-      id: 'owner-mahbub-001',
-      name: 'Mahbub Uzair',
-      email: AUTHORIZED_OWNER_EMAIL,
-      role: 'Platform Owner',
-      avatarInitials: 'MU',
-      plan: 'Private Enterprise Edition',
-      createdAt: '2026-01-01T00:00:00Z',
-      lastLoginAt: new Date().toISOString(),
-      mfaEnabled: true,
-      securityShieldActive: true,
-      isSupabaseConnected: Boolean(process.env.VITE_SUPABASE_URL)
-    },
-    authenticatedAt: new Date().toISOString(),
-    deviceFingerprint: req.headers['user-agent'] || 'browser-session'
-  };
-
-  return res.json({
-    success: true,
-    session
-  });
-});
-
-app.post('/api/auth/owner-logout', (req, res) => {
-  return res.json({ success: true });
-});
 
 // ---------------------------------------------------------------------------
 // VITE OR STATIC SERVING

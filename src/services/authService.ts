@@ -1,4 +1,5 @@
 import { activityLogger } from './activityLogger';
+import { safeFetchJson } from '../utils/safeFetch';
 
 export interface OwnerProfile {
   id: string;
@@ -111,7 +112,7 @@ export const authService = {
 
     // 2. Validate password securely on the server
     try {
-      const res = await fetch('/api/auth/owner-login', {
+      const data = await safeFetchJson<any>('/api/auth/owner-login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -123,9 +124,7 @@ export const authService = {
         })
       });
 
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
+      if (!data.success || !data.session) {
         return {
           success: false,
           error: data.error || 'Authentication failed. Please verify owner credentials.'
