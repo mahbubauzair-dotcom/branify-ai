@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-display: 'Cinzel', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #0F0F11;
+    color: #F5F5F0;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Metallic Bronze Gradient Accents */
+.bg-bronze-gradient {
+  background: linear-gradient(135deg, #c59b27 0%, #e6ca65 50%, #9e791b 100%);
+}
+
+.text-bronze-gradient {
+  background: linear-gradient(135deg, #dfb746 0%, #f3e098 50%, #c59b27 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.border-bronze {
+  border-color: rgba(197, 155, 39, 0.3);
+}
+
+.border-bronze-glow {
+  box-shadow: 0 0 15px rgba(197, 155, 39, 0.15);
+}

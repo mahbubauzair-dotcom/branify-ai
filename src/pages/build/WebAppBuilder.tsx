@@ -347,6 +347,18 @@ Client request: "${customPrompt.trim()}"`;
                     >
                       Preview
                     </button>
+                    {cat.shortName === 'Gents Salon' && (
+                      <a
+                        href="/template/gents-salon"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="px-3 py-2 bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/40 rounded-lg text-xs font-semibold hover:bg-[#D4AF37]/25 transition-colors flex items-center gap-1"
+                        title="Open the live Afroza Gents Salon site with full admin dashboard"
+                      >
+                        ★ Live Site
+                      </a>
+                    )}
                   </div>
                 </div>
               </Card>

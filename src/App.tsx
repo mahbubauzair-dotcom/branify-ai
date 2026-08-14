@@ -8,6 +8,9 @@ import { ProtectedRoute } from './components/auth/ProtectedRoute';
 
 import { Login } from './pages/auth/Login';
 
+// Integrated Templates (self-contained sub-apps)
+import { GentsSalonTemplate } from './templates/gents-salon/GentsSalonTemplate';
+
 // Main Workspace & Builder Pages
 import { Dashboard } from './pages/dashboard/Dashboard';
 import { AIAssistant } from './pages/ai/AIAssistant';
@@ -126,6 +129,11 @@ export default function App() {
         <Route path="/forgot-password" element={<Navigate to="/login" replace />} />
         <Route path="/onboarding" element={<Navigate to="/dashboard" replace />} />
         <Route path="/admin/login" element={<Navigate to="/login" replace />} />
+
+        {/* Integrated Template Demos — public, self-contained sub-apps */}
+        {/* The Afroza Gents Salon app handles its own internal routing via */}
+        {/* window.location.pathname (including /template/gents-salon/admin/*) */}
+        <Route path="/template/gents-salon/*" element={<GentsSalonTemplate />} />
 
         {/* Protected Private Owner Workspace */}
         <Route
